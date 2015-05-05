@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="H15_PROJET_E09Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Seance">
+    <Key>
+      <PropertyRef Name="SeanceID" />
+    </Key>
+    <Property Name="SeanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AgentID" Type="Int32" Nullable="false" />
+    <Property Name="MaisonID" Type="Int32" Nullable="false" />
+    <Property Name="StatusSeance" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="TypeForfaitDeBaseVoulu" Type="Int32" Nullable="false" />
+    <Property Name="NbPanoramasVoulu" Type="Int32" Nullable="false" />
+    <Property Name="VisiteImmersive" Type="Boolean" Nullable="false" />
+    <Property Name="DateDebutDeSeance" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FraisDeBaseReel" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="FraisDeDeplacement" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="FraisSeanceTotal" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="DateRemisePhoto" Type="DateTime" Precision="3" />
+    <Property Name="DateRemisePanoramas" Type="DateTime" Precision="3" />
+    <Property Name="DateDePaymentRecu" Type="DateTime" Precision="3" />
+    <Property Name="Commentaire" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FraisAdditionnel" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="RendezVous" Relationship="H15_PROJET_E09Model.FK_RendezVous_Seance_SeanceID" FromRole="Seance" ToRole="RendezVou" />
+  </EntityType>
+  <EntityContainer Name="H15_PROJET_E09Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Seances" EntityType="Self.Seance" />
+    <EntitySet Name="RendezVous" EntityType="H15_PROJET_E09Model.RendezVou" />
+    <AssociationSet Name="FK_RendezVous_Seance_SeanceID" Association="H15_PROJET_E09Model.FK_RendezVous_Seance_SeanceID">
+      <End Role="Seance" EntitySet="Seances" />
+      <End Role="RendezVou" EntitySet="RendezVous" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="RendezVou">
+    <Key>
+      <PropertyRef Name="RendezVousID" />
+    </Key>
+    <Property Name="RendezVousID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SeanceID" Type="Int32" Nullable="false" />
+    <Property Name="Completee" Type="Boolean" Nullable="false" />
+    <Property Name="DateHeureRendezVous" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DureeRendezVousReel" Type="Int32" Nullable="false" />
+    <Property Name="NbPhotoReel" Type="Int32" Nullable="false" />
+    <Property Name="VisiteVirtuelleNbPanoramas" Type="Int32" Nullable="false" />
+    <Property Name="VisiteImmersiveEstFaite" Type="Boolean" Nullable="false" />
+    <Property Name="Commentaire" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Seance" Relationship="H15_PROJET_E09Model.FK_RendezVous_Seance_SeanceID" FromRole="RendezVou" ToRole="Seance" />
+  </EntityType>
+  <Association Name="FK_RendezVous_Seance_SeanceID">
+    <End Type="H15_PROJET_E09Model.Seance" Role="Seance" Multiplicity="1" />
+    <End Type="H15_PROJET_E09Model.RendezVou" Role="RendezVou" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seance">
+        <PropertyRef Name="SeanceID" />
+      </Principal>
+      <Dependent Role="RendezVou">
+        <PropertyRef Name="SeanceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
