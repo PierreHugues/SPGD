@@ -15,7 +15,8 @@ namespace SPGD.Controllers
     {
         private H15_PROJET_E09Entities db = new H15_PROJET_E09Entities();
         
-        //private UnitOfWork unitOfWork = new UnitOfWork();
+        //private UnitOfWork unitOfWork = new UnitOfWork(); 
+        //test1234
 
         // GET: Seances
         public ActionResult Index()
