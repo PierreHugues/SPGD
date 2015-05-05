@@ -18,6 +18,9 @@ namespace SPGD.Controllers
         //private UnitOfWork unitOfWork = new UnitOfWork(); 
         //test1234
 
+
+        //Test sur le publish YAN
+
         // GET: Seances
         public ActionResult Index()
         {
