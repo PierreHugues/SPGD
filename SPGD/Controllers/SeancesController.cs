@@ -8,12 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using SPGD;
 using SPGD.DAL;
+using SPGD.Models;
 
 namespace SPGD.Controllers
 {
     public class SeancesController : Controller
     {
-        private H15_PROJET_E09Entities db = new H15_PROJET_E09Entities();
+        //private H15_PROJET_E09Entities db = new H15_PROJET_E09Entities();
         
         private UnitOfWork unitOfWork = new UnitOfWork();
 

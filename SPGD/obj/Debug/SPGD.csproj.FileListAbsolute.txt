@@ -112,3 +112,41 @@ E:\Travail\Cours\Prog web serveur 1\Projet de session\SPGD\SPGD\bin\fr\System.We
 E:\Travail\Cours\Prog web serveur 1\Projet de session\SPGD\SPGD\obj\Debug\SPGD.csprojResolveAssemblyReference.cache
 E:\Travail\Cours\Prog web serveur 1\Projet de session\SPGD\SPGD\obj\Debug\SPGD.dll
 E:\Travail\Cours\Prog web serveur 1\Projet de session\SPGD\SPGD\obj\Debug\SPGD.pdb
+C:\Espace Labo\SPGD\SPGD\obj\Debug\SPGD.csprojResolveAssemblyReference.cache
+C:\Espace Labo\SPGD\SPGD\obj\Debug\SPGD.dll
+C:\Espace Labo\SPGD\SPGD\obj\Debug\SPGD.pdb
+C:\Espace Labo\SPGD\SPGD\bin\SPGD.dll.config
+C:\Espace Labo\SPGD\SPGD\bin\SPGD.dll
+C:\Espace Labo\SPGD\SPGD\bin\SPGD.pdb
+C:\Espace Labo\SPGD\SPGD\bin\Antlr3.Runtime.dll
+C:\Espace Labo\SPGD\SPGD\bin\EntityFramework.dll
+C:\Espace Labo\SPGD\SPGD\bin\EntityFramework.SqlServer.dll
+C:\Espace Labo\SPGD\SPGD\bin\Microsoft.Web.Infrastructure.dll
+C:\Espace Labo\SPGD\SPGD\bin\Newtonsoft.Json.dll
+C:\Espace Labo\SPGD\SPGD\bin\System.Web.Helpers.dll
+C:\Espace Labo\SPGD\SPGD\bin\System.Web.Mvc.dll
+C:\Espace Labo\SPGD\SPGD\bin\System.Web.Optimization.dll
+C:\Espace Labo\SPGD\SPGD\bin\System.Web.Razor.dll
+C:\Espace Labo\SPGD\SPGD\bin\System.Web.WebPages.Deployment.dll
+C:\Espace Labo\SPGD\SPGD\bin\System.Web.WebPages.dll
+C:\Espace Labo\SPGD\SPGD\bin\System.Web.WebPages.Razor.dll
+C:\Espace Labo\SPGD\SPGD\bin\WebGrease.dll
+C:\Espace Labo\SPGD\SPGD\bin\EntityFramework.xml
+C:\Espace Labo\SPGD\SPGD\bin\EntityFramework.SqlServer.xml
+C:\Espace Labo\SPGD\SPGD\bin\System.Web.Helpers.xml
+C:\Espace Labo\SPGD\SPGD\bin\System.Web.Mvc.xml
+C:\Espace Labo\SPGD\SPGD\bin\System.Web.Optimization.xml
+C:\Espace Labo\SPGD\SPGD\bin\System.Web.Razor.xml
+C:\Espace Labo\SPGD\SPGD\bin\System.Web.WebPages.xml
+C:\Espace Labo\SPGD\SPGD\bin\System.Web.WebPages.Deployment.xml
+C:\Espace Labo\SPGD\SPGD\bin\System.Web.WebPages.Razor.xml
+C:\Espace Labo\SPGD\SPGD\bin\Antlr3.Runtime.pdb
+C:\Espace Labo\SPGD\SPGD\bin\Newtonsoft.Json.xml
+C:\Espace Labo\SPGD\SPGD\bin\fr\EntityFramework.resources.dll
+C:\Espace Labo\SPGD\SPGD\bin\fr\System.Web.Helpers.resources.dll
+C:\Espace Labo\SPGD\SPGD\bin\fr\System.Web.Mvc.resources.dll
+C:\Espace Labo\SPGD\SPGD\bin\fr\System.Web.Optimization.resources.dll
+C:\Espace Labo\SPGD\SPGD\bin\fr\System.Web.Razor.resources.dll
+C:\Espace Labo\SPGD\SPGD\bin\fr\System.Web.WebPages.resources.dll
+C:\Espace Labo\SPGD\SPGD\bin\fr\System.Web.WebPages.Deployment.resources.dll
+C:\Espace Labo\SPGD\SPGD\bin\fr\System.Web.WebPages.Razor.resources.dll
