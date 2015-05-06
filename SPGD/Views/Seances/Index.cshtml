@@ -23,13 +23,14 @@
         <th>
             @Html.DisplayNameFor(model => model.TypeForfaitDeBaseVoulu)
         </th>
+        @*
         <th>
             @Html.DisplayNameFor(model => model.NbPanoramasVoulu)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.VisiteImmersive)
         </th>
-        @*<th>
+        <th>
             @Html.DisplayNameFor(model => model.FraisDeBaseReel)
         </th>
         <th>
@@ -82,53 +83,54 @@
         <td>
             @Html.DisplayFor(modelItem => item.TypeForfaitDeBaseVoulu)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NbPanoramasVoulu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VisiteImmersive)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.FraisDeBaseReel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FraisDeDeplacement)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Commentaire)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FraisAdditionnel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateDebutDeSeance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateRemisePhoto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateRemisePanoramas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateDePaymentRecu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FraisPanoramas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FraisVisiteImmersive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FraisSeanceTotal)
-        </td>*@
+@*
+    <td>
+        @Html.DisplayFor(modelItem => item.NbPanoramasVoulu)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.VisiteImmersive)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FraisDeBaseReel)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FraisDeDeplacement)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Commentaire)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FraisAdditionnel)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateDebutDeSeance)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateRemisePhoto)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateRemisePanoramas)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateDePaymentRecu)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FraisPanoramas)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FraisVisiteImmersive)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FraisSeanceTotal)
+    </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.RendezVou.Commentaire)
         </td>
-        <td>
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.SeanceID }) |
             @Html.ActionLink("Details", "Details", new { id=item.SeanceID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.SeanceID })
-        </td>
+        </td>*@
     </tr>
 }
 

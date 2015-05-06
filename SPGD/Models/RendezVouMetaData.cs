@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -17,6 +18,8 @@ namespace SPGD.Models
             public int DureeRendezVousReel { get; set; }
             public int NbPhotoReel { get; set; }
             public string Commentaire { get; set; }
+            
+            [Key, ForeignKey("Seance")]
             public int RendezVouID { get; set; }
 
         }
