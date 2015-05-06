@@ -1,0 +1,88 @@
+﻿@model SPGD.Models.RendezVou
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>RendezVou</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Completee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Completee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateHeureRendezVous)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateHeureRendezVous)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DureeRendezVousReel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DureeRendezVousReel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NbPhotoReel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NbPhotoReel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisiteVirtuelleNbPanoramas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisiteVirtuelleNbPanoramas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisiteImmersiveEstFaite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisiteImmersiveEstFaite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commentaire)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seance.StatusSeance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seance.StatusSeance)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

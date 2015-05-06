@@ -12,7 +12,7 @@
   </EntityType>
   <EntityType Name="RendezVou">
     <Key>
-      <PropertyRef Name="SeanceID" />
+      <PropertyRef Name="RendezVousID" />
     </Key>
     <Property Name="Completee" Type="Boolean" Nullable="false" />
     <Property Name="DateHeureRendezVous" Type="DateTime" Nullable="false" Precision="3" />
@@ -21,8 +21,8 @@
     <Property Name="VisiteVirtuelleNbPanoramas" Type="Int32" Nullable="false" />
     <Property Name="VisiteImmersiveEstFaite" Type="Boolean" Nullable="false" />
     <Property Name="Commentaire" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="SeanceID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Seance" Relationship="Self.FK_Rendezvous_Seance_SeanceID" FromRole="RendezVous" ToRole="Seance" />
+    <Property Name="RendezVousID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Seance" Relationship="Self.FK_Seance_Rendezvoux_RendezVousID" FromRole="RendezVous" ToRole="Seance" />
   </EntityType>
   <EntityType Name="Seance">
     <Key>
@@ -46,9 +46,9 @@
     <Property Name="FraisPanoramas" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="FraisVisiteImmersive" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="FraisSeanceTotal" Type="Decimal" Precision="14" Scale="2" annotation:StoreGeneratedPattern="Computed" />
-    <NavigationProperty Name="RendezVou" Relationship="Self.FK_Rendezvous_Seance_SeanceID" FromRole="Seance" ToRole="RendezVous" />
+    <NavigationProperty Name="RendezVou" Relationship="Self.FK_Seance_Rendezvoux_RendezVousID" FromRole="Seance" ToRole="RendezVous" />
   </EntityType>
-  <Association Name="FK_Rendezvous_Seance_SeanceID">
+  <Association Name="FK_Seance_Rendezvoux_RendezVousID">
     <End Role="Seance" Type="Self.Seance" Multiplicity="1" />
     <End Role="RendezVous" Type="Self.RendezVou" Multiplicity="0..1" />
     <ReferentialConstraint>
@@ -56,7 +56,7 @@
         <PropertyRef Name="SeanceID" />
       </Principal>
       <Dependent Role="RendezVous">
-        <PropertyRef Name="SeanceID" />
+        <PropertyRef Name="RendezVousID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -64,7 +64,7 @@
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="RendezVous" EntityType="Self.RendezVou" />
     <EntitySet Name="Seances" EntityType="Self.Seance" />
-    <AssociationSet Name="FK_Rendezvous_Seance_SeanceID" Association="Self.FK_Rendezvous_Seance_SeanceID">
+    <AssociationSet Name="FK_Seance_Rendezvoux_RendezVousID" Association="Self.FK_Seance_Rendezvoux_RendezVousID">
       <End Role="Seance" EntitySet="Seances" />
       <End Role="RendezVous" EntitySet="RendezVous" />
     </AssociationSet>

@@ -21,7 +21,7 @@ namespace SPGD.Models
         public int VisiteVirtuelleNbPanoramas { get; set; }
         public bool VisiteImmersiveEstFaite { get; set; }
         public string Commentaire { get; set; }
-        public int SeanceID { get; set; }
+        public int RendezVousID { get; set; }
     
         public virtual Seance Seance { get; set; }
     }

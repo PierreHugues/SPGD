@@ -22,7 +22,7 @@
           <ScalarProperty Name="VisiteVirtuelleNbPanoramas" ColumnName="VisiteVirtuelleNbPanoramas" />
           <ScalarProperty Name="VisiteImmersiveEstFaite" ColumnName="VisiteImmersiveEstFaite" />
           <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
-          <ScalarProperty Name="SeanceID" ColumnName="SeanceID" />
+          <ScalarProperty Name="RendezVousID" ColumnName="RendezVousID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

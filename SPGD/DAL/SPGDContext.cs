@@ -10,5 +10,6 @@ namespace SPGD.DAL
     public class SPGDContext : DbContext
     {
         public DbSet<Seance> Sceances { get; set; }
+        public DbSet<RendezVou> RendezVous { get; set; }
     }
 }

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<SPGD.Models.RendezVou>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Completee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateHeureRendezVous)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DureeRendezVousReel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NbPhotoReel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VisiteVirtuelleNbPanoramas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VisiteImmersiveEstFaite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seance.StatusSeance)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Completee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateHeureRendezVous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DureeRendezVousReel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NbPhotoReel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VisiteVirtuelleNbPanoramas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VisiteImmersiveEstFaite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Commentaire)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seance.StatusSeance)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RendezVousID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RendezVousID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RendezVousID })
+        </td>
+    </tr>
+}
+
+</table>
