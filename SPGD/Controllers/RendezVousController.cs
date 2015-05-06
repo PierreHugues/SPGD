@@ -48,10 +48,11 @@ namespace SPGD.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Completee,DateHeureRendezVous,DureeRendezVousReel,NbPhotoReel,VisiteVirtuelleNbPanoramas,VisiteImmersiveEstFaite,Commentaire,RendezVouID")] RendezVou rendezVou)
+        public ActionResult Create([Bind(Include = "Completee,DateHeureRendezVous,DureeRendezVousReel,NbPhotoReel,RendezVouID")] RendezVou rendezVou)
         {
             if (ModelState.IsValid)
             {
+                
                 db.RendezVous.Add(rendezVou);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,11 +83,14 @@ namespace SPGD.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Completee,DateHeureRendezVous,DureeRendezVousReel,NbPhotoReel,VisiteVirtuelleNbPanoramas,VisiteImmersiveEstFaite,Commentaire,RendezVouID")] RendezVou rendezVou)
+        public ActionResult Edit([Bind(Include = "Completee,DateHeureRendezVous,Commentaire,RendezVouID")] RendezVou rendezVou)
         {
             if (ModelState.IsValid)
-            {
+            {               
+
                 db.Entry(rendezVou).State = EntityState.Modified;
+                rendezVou.DureeRendezVousReel = 0;
+                rendezVou.NbPhotoReel = 0;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

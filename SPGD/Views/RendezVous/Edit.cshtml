@@ -50,24 +50,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.VisiteVirtuelleNbPanoramas, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.VisiteVirtuelleNbPanoramas, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.VisiteVirtuelleNbPanoramas, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.VisiteImmersiveEstFaite, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.VisiteImmersiveEstFaite)
-                    @Html.ValidationMessageFor(model => model.VisiteImmersiveEstFaite, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.Commentaire, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Commentaire, new { htmlAttributes = new { @class = "form-control" } })

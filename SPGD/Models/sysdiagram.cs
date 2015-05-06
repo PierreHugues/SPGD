@@ -11,18 +11,13 @@ namespace SPGD.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
-    public partial class RendezVou
+    public partial class sysdiagram
     {
-        public bool Completee { get; set; }
-        [DataType(DataType.DateTime)]
-        public System.DateTime DateHeureRendezVous { get; set; }
-        public int DureeRendezVousReel { get; set; }
-        public int NbPhotoReel { get; set; }
-        public string Commentaire { get; set; }
-        public int RendezVouID { get; set; }
-    
-        public virtual Seance Seance { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

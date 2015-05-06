@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="H15_PROJET_E09Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="RendezVous">
           <Key>
             <PropertyRef Name="RendezVouID" />
@@ -13,8 +23,6 @@
           <Property Name="DateHeureRendezVous" Type="datetime" Nullable="false" />
           <Property Name="DureeRendezVousReel" Type="int" Nullable="false" />
           <Property Name="NbPhotoReel" Type="int" Nullable="false" />
-          <Property Name="VisiteVirtuelleNbPanoramas" Type="int" Nullable="false" />
-          <Property Name="VisiteImmersiveEstFaite" Type="bit" Nullable="false" />
           <Property Name="Commentaire" Type="nvarchar" MaxLength="100" />
           <Property Name="RendezVouID" Type="int" Nullable="false" />
         </EntityType>
@@ -27,19 +35,14 @@
           <Property Name="MaisonID" Type="int" Nullable="false" />
           <Property Name="StatusSeance" Type="nvarchar" MaxLength="15" />
           <Property Name="TypeForfaitDeBaseVoulu" Type="int" Nullable="false" />
-          <Property Name="NbPanoramasVoulu" Type="int" Nullable="false" />
-          <Property Name="VisiteImmersive" Type="bit" Nullable="false" />
           <Property Name="FraisDeBaseReel" Type="decimal" Precision="10" Scale="2" />
           <Property Name="FraisDeDeplacement" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Commentaire" Type="nvarchar" MaxLength="100" />
           <Property Name="FraisAdditionnel" Type="decimal" Precision="10" Scale="2" />
           <Property Name="DateDebutDeSeance" Type="datetime" Nullable="false" />
           <Property Name="DateRemisePhoto" Type="datetime" />
-          <Property Name="DateRemisePanoramas" Type="datetime" />
           <Property Name="DateDePaymentRecu" Type="datetime" />
-          <Property Name="FraisPanoramas" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="FraisVisiteImmersive" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="FraisSeanceTotal" Type="decimal" Precision="14" Scale="2" StoreGeneratedPattern="Computed" />
+          <Property Name="FraisSeanceTotal" Type="decimal" Precision="12" Scale="2" StoreGeneratedPattern="Computed" />
         </EntityType>
         <Association Name="FK_Seance_Rendezvoux_RendezVousID">
           <End Role="Seance" Type="Self.Seance" Multiplicity="1" />
@@ -54,6 +57,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="H15_PROJET_E09ModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RendezVous" EntityType="Self.RendezVous" Schema="Seances" store:Type="Tables" />
           <EntitySet Name="Seance" EntityType="Self.Seance" Schema="Seances" store:Type="Tables" />
           <AssociationSet Name="FK_Seance_Rendezvoux_RendezVousID" Association="Self.FK_Seance_Rendezvoux_RendezVousID">
@@ -66,6 +70,16 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="H15_PROJET_E09Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="RendezVou">
           <Key>
             <PropertyRef Name="RendezVouID" />
@@ -74,8 +88,6 @@
           <Property Name="DateHeureRendezVous" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DureeRendezVousReel" Type="Int32" Nullable="false" />
           <Property Name="NbPhotoReel" Type="Int32" Nullable="false" />
-          <Property Name="VisiteVirtuelleNbPanoramas" Type="Int32" Nullable="false" />
-          <Property Name="VisiteImmersiveEstFaite" Type="Boolean" Nullable="false" />
           <Property Name="Commentaire" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="RendezVouID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Seance" Relationship="Self.FK_Seance_Rendezvoux_RendezVousID" FromRole="RendezVous" ToRole="Seance" />
@@ -89,19 +101,14 @@
           <Property Name="MaisonID" Type="Int32" Nullable="false" />
           <Property Name="StatusSeance" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="TypeForfaitDeBaseVoulu" Type="Int32" Nullable="false" />
-          <Property Name="NbPanoramasVoulu" Type="Int32" Nullable="false" />
-          <Property Name="VisiteImmersive" Type="Boolean" Nullable="false" />
           <Property Name="FraisDeBaseReel" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="FraisDeDeplacement" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Commentaire" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="FraisAdditionnel" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="DateDebutDeSeance" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateRemisePhoto" Type="DateTime" Precision="3" />
-          <Property Name="DateRemisePanoramas" Type="DateTime" Precision="3" />
           <Property Name="DateDePaymentRecu" Type="DateTime" Precision="3" />
-          <Property Name="FraisPanoramas" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="FraisVisiteImmersive" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="FraisSeanceTotal" Type="Decimal" Precision="14" Scale="2" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="FraisSeanceTotal" Type="Decimal" Precision="12" Scale="2" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="RendezVou" Relationship="Self.FK_Seance_Rendezvoux_RendezVousID" FromRole="Seance" ToRole="RendezVous" />
         </EntityType>
         <Association Name="FK_Seance_Rendezvoux_RendezVousID">
@@ -117,6 +124,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="H15_PROJET_E09Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="RendezVous" EntityType="Self.RendezVou" />
           <EntitySet Name="Seances" EntityType="Self.Seance" />
           <AssociationSet Name="FK_Seance_Rendezvoux_RendezVousID" Association="Self.FK_Seance_Rendezvoux_RendezVousID">
@@ -130,6 +138,17 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="H15_PROJET_E09ModelStoreContainer" CdmEntityContainer="H15_PROJET_E09Entities1">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="H15_PROJET_E09Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="RendezVous">
             <EntityTypeMapping TypeName="H15_PROJET_E09Model.RendezVou">
               <MappingFragment StoreEntitySet="RendezVous">
@@ -137,8 +156,6 @@
                 <ScalarProperty Name="DateHeureRendezVous" ColumnName="DateHeureRendezVous" />
                 <ScalarProperty Name="DureeRendezVousReel" ColumnName="DureeRendezVousReel" />
                 <ScalarProperty Name="NbPhotoReel" ColumnName="NbPhotoReel" />
-                <ScalarProperty Name="VisiteVirtuelleNbPanoramas" ColumnName="VisiteVirtuelleNbPanoramas" />
-                <ScalarProperty Name="VisiteImmersiveEstFaite" ColumnName="VisiteImmersiveEstFaite" />
                 <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
                 <ScalarProperty Name="RendezVouID" ColumnName="RendezVouID" />
               </MappingFragment>
@@ -152,18 +169,13 @@
                 <ScalarProperty Name="MaisonID" ColumnName="MaisonID" />
                 <ScalarProperty Name="StatusSeance" ColumnName="StatusSeance" />
                 <ScalarProperty Name="TypeForfaitDeBaseVoulu" ColumnName="TypeForfaitDeBaseVoulu" />
-                <ScalarProperty Name="NbPanoramasVoulu" ColumnName="NbPanoramasVoulu" />
-                <ScalarProperty Name="VisiteImmersive" ColumnName="VisiteImmersive" />
                 <ScalarProperty Name="FraisDeBaseReel" ColumnName="FraisDeBaseReel" />
                 <ScalarProperty Name="FraisDeDeplacement" ColumnName="FraisDeDeplacement" />
                 <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
                 <ScalarProperty Name="FraisAdditionnel" ColumnName="FraisAdditionnel" />
                 <ScalarProperty Name="DateDebutDeSeance" ColumnName="DateDebutDeSeance" />
                 <ScalarProperty Name="DateRemisePhoto" ColumnName="DateRemisePhoto" />
-                <ScalarProperty Name="DateRemisePanoramas" ColumnName="DateRemisePanoramas" />
                 <ScalarProperty Name="DateDePaymentRecu" ColumnName="DateDePaymentRecu" />
-                <ScalarProperty Name="FraisPanoramas" ColumnName="FraisPanoramas" />
-                <ScalarProperty Name="FraisVisiteImmersive" ColumnName="FraisVisiteImmersive" />
                 <ScalarProperty Name="FraisSeanceTotal" ColumnName="FraisSeanceTotal" />
               </MappingFragment>
             </EntityTypeMapping>
