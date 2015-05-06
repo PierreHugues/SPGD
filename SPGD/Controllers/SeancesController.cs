@@ -15,17 +15,13 @@ namespace SPGD.Controllers
     {
         private H15_PROJET_E09Entities db = new H15_PROJET_E09Entities();
         
-        //private UnitOfWork unitOfWork = new UnitOfWork(); 
-        //test1234
-
-
-        //Test sur le publish YAN
+        private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: Seances
         public ActionResult Index()
         {
-            
-            return View(db.Seances.ToList());
+            //return View(db.Seances.ToList());
+            return View(unitOfWork.SeanceRepository.GetSeances());
         }
 
         // GET: Seances/Details/5
@@ -35,7 +31,10 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Seance seance = db.Seances.Find(id);
+            //Seance seance = db.Seances.Find(id);
+            Seance seance = unitOfWork.SeanceRepository.GetSeanceByID(id);
+
+
             if (seance == null)
             {
                 return HttpNotFound();
@@ -59,8 +58,13 @@ namespace SPGD.Controllers
             if (ModelState.IsValid)
             {
                 seance.DateDebutDeSeance = DateTime.Now;
-                db.Seances.Add(seance);
-                db.SaveChanges();
+
+                //db.Seances.Add(seance);
+                unitOfWork.SeanceRepository.InsertSeance(seance);
+
+                //db.SaveChanges();
+                unitOfWork.Save();
+
                 return RedirectToAction("Index");
             }
 
@@ -74,7 +78,9 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Seance seance = db.Seances.Find(id);
+            //Seance seance = db.Seances.Find(id);
+            Seance seance = unitOfWork.SeanceRepository.GetSeanceByID(id);
+
             if (seance == null)
             {
                 return HttpNotFound();
@@ -91,8 +97,14 @@ namespace SPGD.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(seance).State = EntityState.Modified;
-                db.SaveChanges();
+                //**********************
+                //db.Entry(seance).State = EntityState.Modified;
+                unitOfWork.SeanceRepository.UpdateSeance(seance);
+
+
+                //db.SaveChanges();
+                unitOfWork.Save();
+
                 return RedirectToAction("Index");
             }
             return View(seance);
@@ -105,7 +117,9 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Seance seance = db.Seances.Find(id);
+            //Seance seance = db.Seances.Find(id);
+            Seance seance = unitOfWork.SeanceRepository.GetSeanceByID(id);
+
             if (seance == null)
             {
                 return HttpNotFound();
@@ -118,9 +132,18 @@ namespace SPGD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Seance seance = db.Seances.Find(id);
-            db.Seances.Remove(seance);
-            db.SaveChanges();
+            //Seance seance = db.Seances.Find(id);
+            //Seance seance = unitOfWork.SeanceRepository.GetSeanceByID(id);
+
+            //**Pas besoin de get la seanceByID avant
+            //db.Seances.Remove(seance);
+            unitOfWork.SeanceRepository.DeleteSeance(id);
+
+            //unitOfWork.SeanceRepository.Delete(seance);
+
+            //db.SaveChanges();
+            unitOfWork.Save();
+
             return RedirectToAction("Index");
         }
 
@@ -128,7 +151,8 @@ namespace SPGD.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
+                unitOfWork.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -14,7 +14,7 @@ namespace SPGD.DAL
             return Get();
         }
 
-        public Seance GetSeanceByID(int id)
+        public Seance GetSeanceByID(int? id)
         {
             return GetByID(id);
         }

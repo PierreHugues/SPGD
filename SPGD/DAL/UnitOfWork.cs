@@ -7,8 +7,24 @@ namespace SPGD.DAL
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-
         private SPGDContext context = new SPGDContext();
+
+        private SeanceRepository seanceRepository;
+
+        public SeanceRepository SeanceRepository
+        {
+            get
+            {
+                if (this.seanceRepository == null)
+                {
+                    this.seanceRepository = new SeanceRepository(context);
+                }
+                return seanceRepository;
+            }
+        }
+
+
+
 
         private bool disposed = false;
 
