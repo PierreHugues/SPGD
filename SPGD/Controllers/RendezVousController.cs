@@ -39,6 +39,9 @@ namespace SPGD.Controllers
         // GET: RendezVous/Create
         public ActionResult Create()
         {
+            DateTime dateCourante = DateTime.Now;
+            string format = "yyyy-MM-dd hh:mm:ss";
+            ViewBag.Datecourante = dateCourante.ToString(format);
             ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance");
             return View();
         }
@@ -48,12 +51,16 @@ namespace SPGD.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Completee,DateHeureRendezVous,DureeRendezVousReel,NbPhotoReel,RendezVouID")] RendezVou rendezVou)
+        public ActionResult Create([Bind(Include = "DateHeureRendezVous,Commentaire,RendezVouID")] RendezVou rendezVou)
         {
             if (ModelState.IsValid)
             {
+                if (rendezVou.Seance.ToString() != "Demandée")
+                    return RedirectToAction("Index");
                 
                 db.RendezVous.Add(rendezVou);
+                rendezVou.DureeRendezVousReel = 0;
+                rendezVou.NbPhotoReel = 0;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -83,14 +90,12 @@ namespace SPGD.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Completee,DateHeureRendezVous,Commentaire,RendezVouID")] RendezVou rendezVou)
+        public ActionResult Edit([Bind(Include = "Completee,DateHeureRendezVous,DureeRendezVousReel,Commentaire,NbPhotoReel,RendezVouID")] RendezVou rendezVou)
         {
             if (ModelState.IsValid)
             {               
 
                 db.Entry(rendezVou).State = EntityState.Modified;
-                rendezVou.DureeRendezVousReel = 0;
-                rendezVou.NbPhotoReel = 0;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
