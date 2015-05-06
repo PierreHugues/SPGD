@@ -1,18 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="H15_PROJET_E09Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="RendezVous">
     <Key>
-      <PropertyRef Name="RendezVousID" />
+      <PropertyRef Name="RendezVouID" />
     </Key>
     <Property Name="Completee" Type="bit" Nullable="false" />
     <Property Name="DateHeureRendezVous" Type="datetime" Nullable="false" />
@@ -21,7 +11,7 @@
     <Property Name="VisiteVirtuelleNbPanoramas" Type="int" Nullable="false" />
     <Property Name="VisiteImmersiveEstFaite" Type="bit" Nullable="false" />
     <Property Name="Commentaire" Type="nvarchar" MaxLength="100" />
-    <Property Name="RendezVousID" Type="int" Nullable="false" />
+    <Property Name="RendezVouID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Seance">
     <Key>
@@ -54,12 +44,11 @@
         <PropertyRef Name="SeanceID" />
       </Principal>
       <Dependent Role="RendezVous">
-        <PropertyRef Name="RendezVousID" />
+        <PropertyRef Name="RendezVouID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="H15_PROJET_E09ModelStoreContainer">
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RendezVous" EntityType="Self.RendezVous" Schema="Seances" store:Type="Tables" />
     <EntitySet Name="Seance" EntityType="Self.Seance" Schema="Seances" store:Type="Tables" />
     <AssociationSet Name="FK_Seance_Rendezvoux_RendezVousID" Association="Self.FK_Seance_Rendezvoux_RendezVousID">

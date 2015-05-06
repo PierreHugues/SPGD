@@ -6,22 +6,21 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using SPGD;
-using SPGD.DAL;
 using SPGD.Models;
+using SPGD.DAL;
 
 namespace SPGD.Controllers
 {
     public class SeancesController : Controller
     {
-        //private H15_PROJET_E09Entities db = new H15_PROJET_E09Entities();
-        
+        private H15_PROJET_E09Entities1 db = new H15_PROJET_E09Entities1();
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: Seances
         public ActionResult Index()
         {
-            //return View(db.Seances.ToList());
+            //var seances = db.Seances.Include(s => s.RendezVou);
+            //return View(seances.ToList());
             return View(unitOfWork.SeanceRepository.GetSeances());
         }
 
@@ -35,7 +34,6 @@ namespace SPGD.Controllers
             //Seance seance = db.Seances.Find(id);
             Seance seance = unitOfWork.SeanceRepository.GetSeanceByID(id);
 
-
             if (seance == null)
             {
                 return HttpNotFound();
@@ -46,6 +44,7 @@ namespace SPGD.Controllers
         // GET: Seances/Create
         public ActionResult Create()
         {
+            ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire");
             return View();
         }
 
@@ -54,12 +53,10 @@ namespace SPGD.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SeanceID,AgentID,MaisonID,StatusSeance,TypeForfaitDeBaseVoulu,NbPanoramasVoulu,VisiteImmersive,Commentaire")] Seance seance)
+        public ActionResult Create([Bind(Include = "SeanceID,AgentID,MaisonID,StatusSeance,TypeForfaitDeBaseVoulu,NbPanoramasVoulu,VisiteImmersive,FraisDeBaseReel,FraisDeDeplacement,Commentaire,FraisAdditionnel,DateDebutDeSeance,DateRemisePhoto,DateRemisePanoramas,DateDePaymentRecu,FraisPanoramas,FraisVisiteImmersive,FraisSeanceTotal")] Seance seance)
         {
             if (ModelState.IsValid)
             {
-                seance.DateDebutDeSeance = DateTime.Now;
-
                 //db.Seances.Add(seance);
                 unitOfWork.SeanceRepository.InsertSeance(seance);
 
@@ -69,6 +66,7 @@ namespace SPGD.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire", seance.SeanceID);
             return View(seance);
         }
 
@@ -86,6 +84,7 @@ namespace SPGD.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire", seance.SeanceID);
             return View(seance);
         }
 
@@ -94,20 +93,19 @@ namespace SPGD.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SeanceID,MaisonID,StatusSeance,TypeForfaitDeBaseVoulu,NbPanoramasVoulu,VisiteImmersive,Commentaire")] Seance seance)
+        public ActionResult Edit([Bind(Include = "SeanceID,AgentID,MaisonID,StatusSeance,TypeForfaitDeBaseVoulu,NbPanoramasVoulu,VisiteImmersive,FraisDeBaseReel,FraisDeDeplacement,Commentaire,FraisAdditionnel,DateDebutDeSeance,DateRemisePhoto,DateRemisePanoramas,DateDePaymentRecu,FraisPanoramas,FraisVisiteImmersive,FraisSeanceTotal")] Seance seance)
         {
             if (ModelState.IsValid)
             {
-                //**********************
                 //db.Entry(seance).State = EntityState.Modified;
                 unitOfWork.SeanceRepository.UpdateSeance(seance);
 
-
                 //db.SaveChanges();
                 unitOfWork.Save();
-
+                
                 return RedirectToAction("Index");
             }
+            ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire", seance.SeanceID);
             return View(seance);
         }
 
@@ -136,11 +134,8 @@ namespace SPGD.Controllers
             //Seance seance = db.Seances.Find(id);
             //Seance seance = unitOfWork.SeanceRepository.GetSeanceByID(id);
 
-            //**Pas besoin de get la seanceByID avant
             //db.Seances.Remove(seance);
             unitOfWork.SeanceRepository.DeleteSeance(id);
-
-            //unitOfWork.SeanceRepository.Delete(seance);
 
             //db.SaveChanges();
             unitOfWork.Save();

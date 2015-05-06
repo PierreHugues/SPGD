@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SPGD.Seance>
+﻿@model IEnumerable<SPGD.Models.Seance>
 
 @{
     ViewBag.Title = "Index";
@@ -29,93 +29,107 @@
         <th>
             @Html.DisplayNameFor(model => model.VisiteImmersive)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateDebutDeSeance)
-        </th>
         @*<th>
-                @*Html.DisplayNameFor(model => model.FraisDeBaseReel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FraisDeDeplacement)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FraisAdditionnel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FraisSeanceTotal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateRemisePhoto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateRemisePanoramas)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateDePaymentRecu)
-            </th>
-        *@
+            @Html.DisplayNameFor(model => model.FraisDeBaseReel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FraisDeDeplacement)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Commentaire)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FraisAdditionnel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDebutDeSeance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRemisePhoto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRemisePanoramas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDePaymentRecu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FraisPanoramas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FraisVisiteImmersive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FraisSeanceTotal)*@
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RendezVou.Commentaire)
+        </th>
+        <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AgentID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaisonID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StatusSeance)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeForfaitDeBaseVoulu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NbPanoramasVoulu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VisiteImmersive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateDebutDeSeance)
-            </td>
-            <td>
-                @*Html.DisplayFor(modelItem => item.FraisDeBaseReel)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FraisDeDeplacement)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FraisAdditionnel)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FraisSeanceTotal)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateRemisePhoto)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateRemisePanoramas)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateDePaymentRecu)
-                    </td>
-                    <td>
-                *@ @Html.DisplayFor(modelItem => item.Commentaire)
-            </td>
-            @*<td>
-                @*Html.ActionLink("Edit", "Edit", new { id=item.SeanceID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.SeanceID }) |
-                @*Html.ActionLink("Delete", "Delete", new { id=item.SeanceID })
-                    </td>*@
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AgentID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaisonID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusSeance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeForfaitDeBaseVoulu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NbPanoramasVoulu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VisiteImmersive)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.FraisDeBaseReel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FraisDeDeplacement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Commentaire)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FraisAdditionnel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateDebutDeSeance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateRemisePhoto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateRemisePanoramas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateDePaymentRecu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FraisPanoramas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FraisVisiteImmersive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FraisSeanceTotal)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.RendezVou.Commentaire)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SeanceID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SeanceID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SeanceID })
+        </td>
+    </tr>
+}
 
 </table>

@@ -1,4 +1,4 @@
-﻿@model SPGD.Seance
+﻿@model SPGD.Models.Seance
 
 @{
     ViewBag.Title = "Details";
@@ -59,14 +59,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateDebutDeSeance)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateDebutDeSeance)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.FraisDeBaseReel)
         </dt>
 
@@ -83,11 +75,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FraisSeanceTotal)
+            @Html.DisplayNameFor(model => model.Commentaire)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FraisSeanceTotal)
+            @Html.DisplayFor(model => model.Commentaire)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FraisAdditionnel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FraisAdditionnel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDebutDeSeance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDebutDeSeance)
         </dd>
 
         <dt>
@@ -115,11 +123,35 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Commentaire)
+            @Html.DisplayNameFor(model => model.FraisPanoramas)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Commentaire)
+            @Html.DisplayFor(model => model.FraisPanoramas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FraisVisiteImmersive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FraisVisiteImmersive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FraisSeanceTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FraisSeanceTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RendezVou.Commentaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RendezVou.Commentaire)
         </dd>
 
     </dl>

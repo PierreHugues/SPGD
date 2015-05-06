@@ -39,7 +39,7 @@ namespace SPGD.Controllers
         // GET: RendezVous/Create
         public ActionResult Create()
         {
-            ViewBag.RendezVousID = new SelectList(db.Seances, "SeanceID", "StatusSeance");
+            ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace SPGD.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Completee,DateHeureRendezVous,DureeRendezVousReel,NbPhotoReel,VisiteVirtuelleNbPanoramas,VisiteImmersiveEstFaite,Commentaire,RendezVousID")] RendezVou rendezVou)
+        public ActionResult Create([Bind(Include = "Completee,DateHeureRendezVous,DureeRendezVousReel,NbPhotoReel,VisiteVirtuelleNbPanoramas,VisiteImmersiveEstFaite,Commentaire,RendezVouID")] RendezVou rendezVou)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace SPGD.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RendezVousID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVousID);
+            ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
             return View(rendezVou);
         }
 
@@ -73,7 +73,7 @@ namespace SPGD.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.RendezVousID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVousID);
+            ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
             return View(rendezVou);
         }
 
@@ -82,7 +82,7 @@ namespace SPGD.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Completee,DateHeureRendezVous,DureeRendezVousReel,NbPhotoReel,VisiteVirtuelleNbPanoramas,VisiteImmersiveEstFaite,Commentaire,RendezVousID")] RendezVou rendezVou)
+        public ActionResult Edit([Bind(Include = "Completee,DateHeureRendezVous,DureeRendezVousReel,NbPhotoReel,VisiteVirtuelleNbPanoramas,VisiteImmersiveEstFaite,Commentaire,RendezVouID")] RendezVou rendezVou)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace SPGD.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.RendezVousID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVousID);
+            ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
             return View(rendezVou);
         }
 

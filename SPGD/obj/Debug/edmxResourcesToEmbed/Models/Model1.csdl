@@ -1,18 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="H15_PROJET_E09Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <EntityType Name="RendezVou">
     <Key>
-      <PropertyRef Name="RendezVousID" />
+      <PropertyRef Name="RendezVouID" />
     </Key>
     <Property Name="Completee" Type="Boolean" Nullable="false" />
     <Property Name="DateHeureRendezVous" Type="DateTime" Nullable="false" Precision="3" />
@@ -21,7 +11,7 @@
     <Property Name="VisiteVirtuelleNbPanoramas" Type="Int32" Nullable="false" />
     <Property Name="VisiteImmersiveEstFaite" Type="Boolean" Nullable="false" />
     <Property Name="Commentaire" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="RendezVousID" Type="Int32" Nullable="false" />
+    <Property Name="RendezVouID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Seance" Relationship="Self.FK_Seance_Rendezvoux_RendezVousID" FromRole="RendezVous" ToRole="Seance" />
   </EntityType>
   <EntityType Name="Seance">
@@ -56,12 +46,11 @@
         <PropertyRef Name="SeanceID" />
       </Principal>
       <Dependent Role="RendezVous">
-        <PropertyRef Name="RendezVousID" />
+        <PropertyRef Name="RendezVouID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="H15_PROJET_E09Entities1" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="RendezVous" EntityType="Self.RendezVou" />
     <EntitySet Name="Seances" EntityType="Self.Seance" />
     <AssociationSet Name="FK_Seance_Rendezvoux_RendezVousID" Association="Self.FK_Seance_Rendezvoux_RendezVousID">
