@@ -11,12 +11,10 @@ namespace SPGD.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class RendezVou
     {
         public bool Completee { get; set; }
-        [DataType(DataType.DateTime)]
         public System.DateTime DateHeureRendezVous { get; set; }
         public int DureeRendezVousReel { get; set; }
         public int NbPhotoReel { get; set; }
