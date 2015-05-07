@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.StatusSeance)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TypeForfaitDeBaseVoulu)
+            Forfait Demandé
         </th>
         @*
         <th>
@@ -80,9 +80,21 @@
         <td>
             @Html.DisplayFor(modelItem => item.StatusSeance)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TypeForfaitDeBaseVoulu)
-        </td>
+        
+            @* @Html.DisplayFor(modelItem => item.TypeForfaitDeBaseVoulu)*@
+            @{var typeForfaitValeurNumerique = item.TypeForfaitDeBaseVoulu;}
+            @if (typeForfaitValeurNumerique == 1)
+            { 
+                <td>Or</td>
+            }
+            @if (typeForfaitValeurNumerique == 2)
+            { 
+                <td>Argent</td>
+            }
+            @if (typeForfaitValeurNumerique == 3)
+            { 
+                <td>Bronze</td>
+            }
 @*
     <td>
         @Html.DisplayFor(modelItem => item.NbPanoramasVoulu)
@@ -123,6 +135,7 @@
     <td>
         @Html.DisplayFor(modelItem => item.FraisSeanceTotal)
     </td>*@
+
         <td>
             @Html.DisplayFor(modelItem => item.RendezVou.Commentaire)
         </td>

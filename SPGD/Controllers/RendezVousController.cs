@@ -42,7 +42,10 @@ namespace SPGD.Controllers
             DateTime dateCourante = DateTime.Now;
             string format = "yyyy-MM-dd hh:mm:ss";
             ViewBag.Datecourante = dateCourante.ToString(format);
-            ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance");
+
+
+
+            ViewBag.SeanceID = new SelectList(db.Seances, "SeanceID", "SeanceID");
             return View();
         }
 
@@ -55,8 +58,8 @@ namespace SPGD.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (rendezVou.Seance.ToString() != "Demandée")
-                    return RedirectToAction("Index");
+                //if (rendezVou.Seance.ToString() != "Demandée")
+                //    return RedirectToAction("Index");
                 
                 db.RendezVous.Add(rendezVou);
                 rendezVou.DureeRendezVousReel = 0;
