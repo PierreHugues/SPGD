@@ -21,6 +21,7 @@ namespace SPGD.Controllers
         {
             //var seances = db.Seances.Include(s => s.RendezVou);
             //return View(seances.ToList());
+            //ViewBag.RDV = db.RendezVous;
             return View(unitOfWork.SeanceRepository.GetSeances());
         }
 
@@ -44,6 +45,9 @@ namespace SPGD.Controllers
         // GET: Seances/Create
         public ActionResult Create()
         {
+            DateTime dateCourante = DateTime.Now;
+            string format = "yyyy-MM-dd hh:mm:ss";
+            ViewBag.Datecourante = dateCourante.ToString(format);
             ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire");
             return View();
         }
