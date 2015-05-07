@@ -54,7 +54,7 @@ namespace SPGD.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DateHeureRendezVous,Commentaire,RendezVouID")] RendezVou rendezVou)
+        public ActionResult Create([Bind(Include = "DateHeureRendezVous,Commentaire,RendezVouID")] RendezVou rendezVou)    // IL FAUT RÉSOUDRE ICI LE PROBLÈMEDU FAIT QUE rendezVous RECOIT TOUJOURS UN ID DE 0
         {
             if (ModelState.IsValid)
             {
