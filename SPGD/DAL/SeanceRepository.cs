@@ -8,7 +8,7 @@ namespace SPGD.DAL
 {
     public class SeanceRepository : GenericRepository<Seance>
     {
-        public SeanceRepository(SPGDContext context) : base(context) { }
+        public SeanceRepository(H15_PROJET_E09Entities1 context) : base(context) { }
 
         public IEnumerable<Seance> GetSeances()
         {
