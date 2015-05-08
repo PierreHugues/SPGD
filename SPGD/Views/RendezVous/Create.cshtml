@@ -60,7 +60,15 @@
                 @Html.ValidationMessageFor(model => model.Commentaire, "", new { @class = "text-danger" })
             </div>
         </div>
-        @Html.Hidden("RendezVouID", Viewbag.SeanceID)
+        
+        <div class="form-group">
+
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.RendezVouID, new { Value = ViewBag.SeanceID })
+                @Html.ValidationMessageFor(model => model.RendezVouID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         @*
     <div class="form-group">
         @Html.LabelFor(model => model.RendezVouID, "RendezVouID", htmlAttributes: new { @class = "control-label col-md-2" })
