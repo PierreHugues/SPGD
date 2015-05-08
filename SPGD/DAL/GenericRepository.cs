@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SPGD.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -8,10 +9,10 @@ namespace SPGD.DAL
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class 
     {
-        internal SPGDContext context;
+        internal H15_PROJET_E09Entities1 context;
         internal DbSet<TEntity> dbSet;
 
-        public GenericRepository(SPGDContext context)
+        public GenericRepository(H15_PROJET_E09Entities1 context)
         {            
             this.context = context;
             this.dbSet = context.Set<TEntity>();
