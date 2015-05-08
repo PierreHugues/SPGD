@@ -139,11 +139,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.RendezVou.Commentaire)
         </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SeanceID }) |
+        <td>
+            @if(item.StatusSeance == "Demandée")
+            { 
+            @Html.ActionLink("Creation du RendezVous","Create" , "RendezVous",  new { id=item.SeanceID }, null)
+            }
+            @*|
             @Html.ActionLink("Details", "Details", new { id=item.SeanceID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.SeanceID })
-        </td>*@
+                *@
+        </td>
     </tr>
 }
 

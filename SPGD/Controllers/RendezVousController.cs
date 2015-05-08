@@ -37,15 +37,13 @@ namespace SPGD.Controllers
         }
 
         // GET: RendezVous/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             DateTime dateCourante = DateTime.Now;
             string format = "yyyy-MM-dd hh:mm:ss";
             ViewBag.Datecourante = dateCourante.ToString(format);
-
-
-
-            ViewBag.SeanceID = new SelectList(db.Seances, "SeanceID", "SeanceID");
+            //ViewBag.SeanceID = new SelectList(db.Seances, "SeanceID", "SeanceID");
+            ViewBag.SeanceID = id; 
             return View();
         }
 
@@ -54,13 +52,12 @@ namespace SPGD.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DateHeureRendezVous,Commentaire,RendezVouID")] RendezVou rendezVou)    // IL FAUT RÉSOUDRE ICI LE PROBLÈMEDU FAIT QUE rendezVous RECOIT TOUJOURS UN ID DE 0
+        public ActionResult Create([Bind(Include = "DateHeureRendezVous,Commentaire, RendezVouID")] RendezVou rendezVou)    // IL FAUT RÉSOUDRE ICI LE PROBLÈMEDU FAIT QUE rendezVous RECOIT TOUJOURS UN ID DE 0
         {
             if (ModelState.IsValid)
             {
                 //if (rendezVou.Seance.ToString() != "Demandée")
                 //    return RedirectToAction("Index");
-                
                 db.RendezVous.Add(rendezVou);
                 rendezVou.DureeRendezVousReel = 0;
                 rendezVou.NbPhotoReel = 0;
