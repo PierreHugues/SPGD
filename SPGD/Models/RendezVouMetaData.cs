@@ -14,6 +14,7 @@ namespace SPGD.Models
         {
             public bool Completee { get; set; }
             [DataType(DataType.DateTime)]
+            [RDVDateRangeValidation]
             public System.DateTime DateHeureRendezVous { get; set; }
             public int DureeRendezVousReel { get; set; }
             public int NbPhotoReel { get; set; }
