@@ -21,7 +21,7 @@ namespace SPGD.Controllers
         {
             //var seances = db.Seances.Include(s => s.RendezVou);
             //return View(seances.ToList());
-            ViewBag.RDV = db.RendezVous;
+           // ViewBag.RDV = db.RendezVous;
             return View(unitOfWork.SeanceRepository.GetSeances());
         }
 
