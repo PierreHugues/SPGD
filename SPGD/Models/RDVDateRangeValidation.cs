@@ -26,14 +26,14 @@ namespace SPGD.Models
                 RendezVou RDV = (RendezVou)validationContext.ObjectInstance;
                 RendezVou RDV_BD = unitOfWork.RendezVousRepository.GetRendezVousByID(RDV.RendezVouID);
 
-                if(dateTimeAVerifier != RDV_BD.DateHeureRendezVous)
+                if (RDV_BD == null || dateTimeAVerifier != RDV_BD.DateHeureRendezVous)
                 {
                     if (dateTimeAVerifier <= DateTime.Today.AddDays(1) || dateTimeAVerifier >= DateTime.Today.AddDays(15))
                     {
                         var errorMessage = "La date de rendez-vous pour une séance de photo doit être comprise entre la date du jour + 1 et date du jour + 15 (incluse)";
                         return new ValidationResult(errorMessage);
                     }
-                    var test = validationContext.Items.Values;
+
                     //if()
                     //{
                     //    var errorMessage = "o	La date pour un rendez-vous doit être unique pour date, horaire, photographe.";
