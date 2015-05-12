@@ -148,6 +148,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\RDVDateRangeValidation.cs" />
+    <Compile Include="Models\RDVModifierNbPhotoValidation.cs" />
     <Compile Include="Models\RendezVou.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
