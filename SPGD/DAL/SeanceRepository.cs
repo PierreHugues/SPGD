@@ -14,7 +14,7 @@ namespace SPGD.DAL
         {
             IEnumerable<Seance> seances;
             seances = Get();
-            seances = seances.OrderBy(s => s.DateDebutDeSeance);
+            seances = seances.OrderByDescending(s => s.DateDebutDeSeance);
 
             return seances;
         }
