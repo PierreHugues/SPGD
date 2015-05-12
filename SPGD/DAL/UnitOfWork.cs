@@ -11,6 +11,7 @@ namespace SPGD.DAL
         private H15_PROJET_E09Entities1 context = new H15_PROJET_E09Entities1();
 
         private SeanceRepository seanceRepository;
+        private RendezVousRepository rendezVousRepository;
 
         public SeanceRepository SeanceRepository
         {
@@ -24,6 +25,17 @@ namespace SPGD.DAL
             }
         }
 
+        public RendezVousRepository RendezVousRepository
+        {
+            get
+            {
+                if (this.rendezVousRepository == null)
+                {
+                    this.rendezVousRepository = new RendezVousRepository(context);
+                }
+                return rendezVousRepository;
+            }
+        }
 
 
 

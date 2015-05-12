@@ -7,18 +7,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SPGD.Models;
+using SPGD.DAL;
 
 namespace SPGD.Controllers
 {
     public class RendezVousController : Controller
     {
         private H15_PROJET_E09Entities1 db = new H15_PROJET_E09Entities1();
+        private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: RendezVous
         public ActionResult Index()
         {
             var rendezVous = db.RendezVous.Include(r => r.Seance);
-            return View(rendezVous.ToList());
+            return View(unitOfWork.RendezVousRepository.GetRendezVous());
         }
 
         // GET: RendezVous/Details/5
@@ -28,7 +30,7 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RendezVou rendezVou = db.RendezVous.Find(id);
+            RendezVou rendezVou = unitOfWork.RendezVousRepository.GetByID(id);
             if (rendezVou == null)
             {
                 return HttpNotFound();
@@ -58,10 +60,12 @@ namespace SPGD.Controllers
             {
                 //if (rendezVou.Seance.ToString() != "Demandée")
                 //    return RedirectToAction("Index");
-                db.RendezVous.Add(rendezVou);
+                //db.RendezVous.Add(rendezVou);
+                
                 rendezVou.DureeRendezVousReel = 0;
                 rendezVou.NbPhotoReel = 0;
-                db.SaveChanges();
+                unitOfWork.RendezVousRepository.InsertRendezVous(rendezVou);
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -76,7 +80,7 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RendezVou rendezVou = db.RendezVous.Find(id);
+            RendezVou rendezVou = unitOfWork.RendezVousRepository.GetByID(id);
             if (rendezVou == null)
             {
                 return HttpNotFound();
@@ -95,8 +99,10 @@ namespace SPGD.Controllers
             if (ModelState.IsValid)
             {               
 
-                db.Entry(rendezVou).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(rendezVou).State = EntityState.Modified;
+                //db.SaveChanges();
+                unitOfWork.RendezVousRepository.UpdateRendezVou(rendezVou);
+                unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
@@ -110,7 +116,7 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RendezVou rendezVou = db.RendezVous.Find(id);
+            RendezVou rendezVou = unitOfWork.RendezVousRepository.GetByID(id);
             if (rendezVou == null)
             {
                 return HttpNotFound();
@@ -123,9 +129,10 @@ namespace SPGD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            RendezVou rendezVou = db.RendezVous.Find(id);
-            db.RendezVous.Remove(rendezVou);
-            db.SaveChanges();
+            RendezVou rendezVou = unitOfWork.RendezVousRepository.GetByID(id);
+            //db.RendezVous.Remove(rendezVou);
+            //db.SaveChanges();
+            unitOfWork.RendezVousRepository.DeleteRendezVou(id);
             return RedirectToAction("Index");
         }
 

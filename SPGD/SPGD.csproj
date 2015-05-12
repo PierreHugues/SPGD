@@ -125,6 +125,7 @@
     <Compile Include="DAL\GenericRepository.cs" />
     <Compile Include="DAL\IGenericRepository.cs" />
     <Compile Include="DAL\IUnitOfWork.cs" />
+    <Compile Include="DAL\RendezVousRepository.cs" />
     <Compile Include="DAL\SeanceRepository.cs" />
     <Compile Include="DAL\SPGDContext.cs" />
     <Compile Include="DAL\UnitOfWork.cs" />
