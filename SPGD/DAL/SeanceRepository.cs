@@ -12,7 +12,11 @@ namespace SPGD.DAL
 
         public IEnumerable<Seance> GetSeances()
         {
-            return Get();
+            IEnumerable<Seance> seances;
+            seances = Get();
+            seances = seances.OrderBy(s => s.DateDebutDeSeance);
+
+            return seances;
         }
 
         public Seance GetSeanceByID(int? id)
