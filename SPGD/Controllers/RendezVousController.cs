@@ -43,7 +43,7 @@ namespace SPGD.Controllers
         {
             DateTime dateCourante = DateTime.Now;
             string format = "yyyy-MM-dd hh:mm:ss";
-            ViewBag.Datecourante = dateCourante.ToString(format);
+            ViewBag.Datecourante = dateCourante.AddDays(1).ToString(format);
             //ViewBag.SeanceID = new SelectList(db.Seances, "SeanceID", "SeanceID");
             ViewBag.SeanceID = id; 
             return View();

@@ -10,13 +10,21 @@ namespace SPGD.DAL
     {
         public SeanceRepository(H15_PROJET_E09Entities1 context) : base(context) { }
 
-        public IEnumerable<Seance> GetSeances()
+        public IEnumerable<Seance> GetSeancesRDV()
         {
             IEnumerable<Seance> seances;
-            seances = Get();
-            seances = seances.Where(s => s.RendezVou != null);
+            seances = Get().Where(s=>s.RendezVou != null);
             seances = seances.OrderByDescending(s => s.DateDebutDeSeance).OrderBy(s => s.RendezVou.DateHeureRendezVous);
+          //  var seances = (from s in seances
+           //                    join r in rendezvous on s.SeanceID equals r.)
+            return seances;
+        }
 
+        public IEnumerable<Seance> GetSeancesSansRDV()
+        {
+            IEnumerable<Seance> seances;
+            seances = Get().Where(s => s.RendezVou == null);
+            seances = seances.OrderByDescending(s => s.DateDebutDeSeance);
             return seances;
         }
 
