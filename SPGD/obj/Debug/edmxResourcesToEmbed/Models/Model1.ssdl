@@ -1,5 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="H15_PROJET_E09Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Agent">
+    <Key>
+      <PropertyRef Name="AgentID" />
+    </Key>
+    <Property Name="AgentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Telephone1" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Telephone2" Type="nvarchar" MaxLength="10" />
+    <Property Name="Courriel1" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Courriel2" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdresseBureau" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -39,6 +52,18 @@
     <Property Name="DateDePaymentRecu" Type="datetime" />
     <Property Name="FraisSeanceTotal" Type="decimal" Precision="12" Scale="2" StoreGeneratedPattern="Computed" />
   </EntityType>
+  <Association Name="FK_Seance_Agent_AgentID">
+    <End Role="Agent" Type="Self.Agent" Multiplicity="1" />
+    <End Role="Seance" Type="Self.Seance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agent">
+        <PropertyRef Name="AgentID" />
+      </Principal>
+      <Dependent Role="Seance">
+        <PropertyRef Name="AgentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Seance_Rendezvoux_RendezVousID">
     <End Role="Seance" Type="Self.Seance" Multiplicity="1" />
     <End Role="RendezVous" Type="Self.RendezVous" Multiplicity="0..1" />
@@ -52,9 +77,14 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="H15_PROJET_E09ModelStoreContainer">
+    <EntitySet Name="Agent" EntityType="Self.Agent" Schema="Agents" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RendezVous" EntityType="Self.RendezVous" Schema="Seances" store:Type="Tables" />
     <EntitySet Name="Seance" EntityType="Self.Seance" Schema="Seances" store:Type="Tables" />
+    <AssociationSet Name="FK_Seance_Agent_AgentID" Association="Self.FK_Seance_Agent_AgentID">
+      <End Role="Agent" EntitySet="Agent" />
+      <End Role="Seance" EntitySet="Seance" />
+    </AssociationSet>
     <AssociationSet Name="FK_Seance_Rendezvoux_RendezVousID" Association="Self.FK_Seance_Rendezvoux_RendezVousID">
       <End Role="Seance" EntitySet="Seance" />
       <End Role="RendezVous" EntitySet="RendezVous" />

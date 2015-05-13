@@ -40,6 +40,7 @@
     <Property Name="DateDePaymentRecu" Type="DateTime" Precision="3" />
     <Property Name="FraisSeanceTotal" Type="Decimal" Precision="12" Scale="2" annotation:StoreGeneratedPattern="Computed" />
     <NavigationProperty Name="RendezVou" Relationship="Self.FK_Seance_Rendezvoux_RendezVousID" FromRole="Seance" ToRole="RendezVous" />
+    <NavigationProperty Name="Agent" Relationship="H15_PROJET_E09Model.FK_Seance_Agent_AgentID" FromRole="Seance" ToRole="Agent" />
   </EntityType>
   <Association Name="FK_Seance_Rendezvoux_RendezVousID">
     <End Role="Seance" Type="Self.Seance" Multiplicity="1" />
@@ -61,5 +62,36 @@
       <End Role="Seance" EntitySet="Seances" />
       <End Role="RendezVous" EntitySet="RendezVous" />
     </AssociationSet>
+    <EntitySet Name="Agents" EntityType="H15_PROJET_E09Model.Agent" />
+    <AssociationSet Name="FK_Seance_Agent_AgentID" Association="H15_PROJET_E09Model.FK_Seance_Agent_AgentID">
+      <End Role="Agent" EntitySet="Agents" />
+      <End Role="Seance" EntitySet="Seances" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Agent">
+    <Key>
+      <PropertyRef Name="AgentID" />
+    </Key>
+    <Property Name="AgentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Prenom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone1" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Courriel1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Courriel2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdresseBureau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Seances" Relationship="H15_PROJET_E09Model.FK_Seance_Agent_AgentID" FromRole="Agent" ToRole="Seance" />
+  </EntityType>
+  <Association Name="FK_Seance_Agent_AgentID">
+    <End Type="H15_PROJET_E09Model.Agent" Role="Agent" Multiplicity="1" />
+    <End Type="H15_PROJET_E09Model.Seance" Role="Seance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agent">
+        <PropertyRef Name="AgentID" />
+      </Principal>
+      <Dependent Role="Seance">
+        <PropertyRef Name="AgentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

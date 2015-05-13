@@ -29,5 +29,6 @@ namespace SPGD.Models
         public Nullable<decimal> FraisSeanceTotal { get; set; }
     
         public virtual RendezVou RendezVou { get; set; }
+        public virtual Agent Agent { get; set; }
     }
 }

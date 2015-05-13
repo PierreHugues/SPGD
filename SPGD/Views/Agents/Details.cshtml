@@ -1,0 +1,74 @@
+﻿@model SPGD.Models.Agent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Agent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephone1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephone2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Courriel1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courriel1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Courriel2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courriel2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdresseBureau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdresseBureau)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AgentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

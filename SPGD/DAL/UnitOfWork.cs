@@ -12,6 +12,8 @@ namespace SPGD.DAL
 
         private SeanceRepository seanceRepository;
         private RendezVousRepository rendezVousRepository;
+        private AgentRepository agentRepository;
+
 
         public SeanceRepository SeanceRepository
         {
@@ -37,6 +39,17 @@ namespace SPGD.DAL
             }
         }
 
+        public AgentRepository AgentRepository
+        {
+            get
+            {
+                if (this.agentRepository == null)
+                {
+                    this.agentRepository = new AgentRepository(context);
+                }
+                return agentRepository;
+            }
+        }
 
 
         private bool disposed = false;

@@ -43,5 +43,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Agents">
+      <EntityTypeMapping TypeName="H15_PROJET_E09Model.Agent">
+        <MappingFragment StoreEntitySet="Agent">
+          <ScalarProperty Name="AdresseBureau" ColumnName="AdresseBureau" />
+          <ScalarProperty Name="Courriel2" ColumnName="Courriel2" />
+          <ScalarProperty Name="Courriel1" ColumnName="Courriel1" />
+          <ScalarProperty Name="Telephone2" ColumnName="Telephone2" />
+          <ScalarProperty Name="Telephone1" ColumnName="Telephone1" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

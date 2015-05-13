@@ -119,9 +119,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AgentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RendezVousController.cs" />
     <Compile Include="Controllers\SeancesController.cs" />
+    <Compile Include="DAL\AgentRepository.cs" />
     <Compile Include="DAL\GenericRepository.cs" />
     <Compile Include="DAL\IGenericRepository.cs" />
     <Compile Include="DAL\IUnitOfWork.cs" />
@@ -131,6 +133,9 @@
     <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Agent.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -228,6 +233,11 @@
     <Content Include="Views\RendezVous\Index.cshtml" />
     <Content Include="Views\Seances\PartialViewSeanceAvecRDV.cshtml" />
     <Content Include="Views\Seances\PartialViewSeanceSansRDV.cshtml" />
+    <Content Include="Views\Agents\Create.cshtml" />
+    <Content Include="Views\Agents\Delete.cshtml" />
+    <Content Include="Views\Agents\Details.cshtml" />
+    <Content Include="Views\Agents\Edit.cshtml" />
+    <Content Include="Views\Agents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

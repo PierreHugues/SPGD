@@ -28,5 +28,6 @@ namespace SPGD.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<RendezVou> RendezVous { get; set; }
         public virtual DbSet<Seance> Seances { get; set; }
+        public virtual DbSet<Agent> Agents { get; set; }
     }
 }
