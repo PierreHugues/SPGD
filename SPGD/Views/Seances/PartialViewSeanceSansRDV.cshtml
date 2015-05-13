@@ -1,0 +1,242 @@
+﻿@*@model IEnumerable<SPGD.Models.Seance>*@
+@model SPGD.ViewModel.SeanceData
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.First().AgentID)*@
+            Nom de l'agent
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.MaisonID)*@
+            Adresse de la maison
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.StatusSeance)*@
+            Status de la séance
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.TypeForfaitDeBaseVoulu)*@
+            Forfait Demandé
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.FraisDeBaseReel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FraisDeDeplacement)
+            </th>*@
+        <th>
+            @*@Html.DisplayNameFor(model => model.RendezVou.DateHeureRendezVous)*@
+            Horaire du rendez-vous
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.RendezVou.Commentaire)*@
+            Commentaire
+        </th>
+        <th></th>
+    </tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.FraisAdditionnel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDebutDeSeance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateRemisePhoto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDePaymentRecu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FraisSeanceTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RendezVou.Commentaire)
+            </th>*@
+        @*<th></th>
+    </tr>*@
+
+    @foreach (var item in Model.seancesSansRDV)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaisonID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusSeance)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.TypeForfaitDeBaseVoulu)
+                </td>*@
+            @{var typeForfaitValeurNumerique = item.TypeForfaitDeBaseVoulu;}
+            @if (typeForfaitValeurNumerique == 1)
+            {
+                <td>Bronze</td>
+            }
+            @if (typeForfaitValeurNumerique == 2)
+            {
+                <td>Argent</td>
+            }
+            @if (typeForfaitValeurNumerique == 3)
+            {
+                <td>Or</td>
+            }
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.FraisDeBaseReel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FraisDeDeplacement)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.RendezVou.DateHeureRendezVous)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Commentaire)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.FraisAdditionnel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDebutDeSeance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateRemisePhoto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDePaymentRecu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FraisSeanceTotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RendezVou.Commentaire)
+                </td>*@
+            <td>
+                @if (item.StatusSeance == "Demandée")
+                {
+                    @Html.ActionLink("Créer un RendezVous", "Create", "RendezVous", new { id = item.SeanceID }, null)
+                }
+                @if (item.StatusSeance == "Confirmée" || item.StatusSeance == "Reportée")
+                {
+                    @Html.ActionLink("Consulter Rendez-Vous", "Edit", "RendezVous", new { id = item.SeanceID }, null)
+                }
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.SeanceID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.SeanceID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.SeanceID })
+                </td>*@
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+@*@model IEnumerable<SPGD.Models.Seance>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AgentID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaisonID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusSeance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeForfaitDeBaseVoulu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FraisDeBaseReel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FraisDeDeplacement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FraisAdditionnel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDebutDeSeance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRemisePhoto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDePaymentRecu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FraisSeanceTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RendezVou.Commentaire)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AgentID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaisonID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusSeance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeForfaitDeBaseVoulu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FraisDeBaseReel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FraisDeDeplacement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Commentaire)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FraisAdditionnel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateDebutDeSeance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateRemisePhoto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateDePaymentRecu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FraisSeanceTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RendezVou.Commentaire)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SeanceID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SeanceID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SeanceID })
+        </td>
+    </tr>
+}
+
+</table>*@

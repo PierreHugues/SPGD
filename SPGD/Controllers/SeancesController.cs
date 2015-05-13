@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SPGD.Models;
 using SPGD.DAL;
+using SPGD.ViewModel;
 
 namespace SPGD.Controllers
 {
@@ -22,7 +23,23 @@ namespace SPGD.Controllers
             //var seances = db.Seances.Include(s => s.RendezVou);
             //return View(seances.ToList());
            // ViewBag.RDV = db.RendezVous;
-            return View(unitOfWork.SeanceRepository.GetSeances());
+
+            //ViewBag.SeancesAvecRDV = unitOfWork.SeanceRepository.GetSeancesRDV();
+            //ViewBag.SeancesSansRDV = unitOfWork.SeanceRepository.GetSeancesSansRDV();
+
+            var viewModel = new SeanceData();
+
+            //if()
+            //{
+                viewModel.seancesSansRDV = unitOfWork.SeanceRepository.GetSeancesSansRDV();
+            //}
+
+            //if()
+            //{
+                viewModel.seancesAvecRDV = unitOfWork.SeanceRepository.GetSeancesRDV();
+            //}
+
+            return View(viewModel);
         }
 
         // GET: Seances/Details/5
@@ -48,7 +65,7 @@ namespace SPGD.Controllers
             DateTime dateCourante = DateTime.Now;
             string format = "yyyy-MM-dd hh:mm:ss";
             ViewBag.Datecourante = dateCourante.ToString(format);
-            ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire");
+            //ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire");
 
             //ViewBag.AgentID = new SelectList(unitOfWork.AgentRepository.Get(), "AgentID", "LastName");
             return View();
@@ -72,7 +89,7 @@ namespace SPGD.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire", seance.SeanceID);
+            //ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire", seance.SeanceID);
             return View(seance);
         }
 
@@ -90,7 +107,7 @@ namespace SPGD.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire", seance.SeanceID);
+            //ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire", seance.SeanceID);
             return View(seance);
         }
 
@@ -111,7 +128,7 @@ namespace SPGD.Controllers
                 
                 return RedirectToAction("Index");
             }
-            ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire", seance.SeanceID);
+            //ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire", seance.SeanceID);
             return View(seance);
         }
 

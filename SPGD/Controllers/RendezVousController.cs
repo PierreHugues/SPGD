@@ -91,7 +91,7 @@ namespace SPGD.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
+            //ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
             return View(rendezVou);
         }
 
@@ -111,7 +111,7 @@ namespace SPGD.Controllers
                 unitOfWork.Save();
                 return RedirectToAction("Index", "Seances");
             }
-            ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
+            //ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
             return View(rendezVou);
         }
 
