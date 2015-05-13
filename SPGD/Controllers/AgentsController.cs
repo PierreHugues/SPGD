@@ -13,7 +13,7 @@ namespace SPGD.Controllers
 {
     public class AgentsController : Controller
     {
-        private H15_PROJET_E09Entities1 db = new H15_PROJET_E09Entities1();
+        //private H15_PROJET_E09Entities1 db = new H15_PROJET_E09Entities1();
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: Agents
@@ -93,8 +93,8 @@ namespace SPGD.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(agent).State = EntityState.Modified;
-
+                //db.Entry(agent).State = EntityState.Modified;
+                unitOfWork.AgentRepository.UpdateAgent(agent);
                 //db.SaveChanges();
                 unitOfWork.Save();
 
