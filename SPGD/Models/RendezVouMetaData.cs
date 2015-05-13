@@ -17,11 +17,11 @@ namespace SPGD.Models
             [RDVDateRangeValidation]
             public System.DateTime DateHeureRendezVous { get; set; }
             public int DureeRendezVousReel { get; set; }
-            
+
             [RDVModifierNbPhotoValidation]
             public int NbPhotoReel { get; set; }
             public string Commentaire { get; set; }
-            
+
             [Key, ForeignKey("Seance")]
             public int RendezVouID { get; set; }
 
