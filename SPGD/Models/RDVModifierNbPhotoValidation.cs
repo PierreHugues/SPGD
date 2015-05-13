@@ -25,12 +25,15 @@ namespace SPGD.Models
                 RendezVou RDV = (RendezVou)validationContext.ObjectInstance;
                 RendezVou RDV_BD = unitOfWork.RendezVousRepository.GetRendezVousByID(RDV.RendezVouID);
 
-                if (valeurNbPhoto != RDV_BD.NbPhotoReel)
+                if (RDV_BD != null)
                 {
-                    if (DateTime.Now < RDV_BD.DateHeureRendezVous)
+                    if (valeurNbPhoto != RDV_BD.NbPhotoReel)
                     {
-                        var errorMessage = "Il est impossible de modifier le nombre de photos prises avant que le Rendez-Vous eut lieu.";
-                        return new ValidationResult(errorMessage);
+                        if (DateTime.Now < RDV_BD.DateHeureRendezVous)
+                        {
+                            var errorMessage = "Il est impossible de modifier le nombre de photos prises avant que le Rendez-Vous eut lieu.";
+                            return new ValidationResult(errorMessage);
+                        }
                     }
                 }
             }

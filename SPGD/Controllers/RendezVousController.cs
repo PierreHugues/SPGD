@@ -61,16 +61,22 @@ namespace SPGD.Controllers
                 //if (rendezVou.Seance.ToString() != "Demandée")
                 //    return RedirectToAction("Index");
                 //db.RendezVous.Add(rendezVou);
-                
+
+               // Seance seance = unitOfWork.SeanceRepository.GetSeanceByID(rendezVou.RendezVouID);
+                //rendezVou.Seance = seance;
+
                 rendezVou.DureeRendezVousReel = 0;
                 rendezVou.NbPhotoReel = 0;
                 unitOfWork.RendezVousRepository.InsertRendezVous(rendezVou);
-                //db.SaveChanges();
-                return RedirectToAction("Index");
+                unitOfWork.Save();
+                return RedirectToAction("Index", "Seances");
             }
 
-            ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
-            return View(rendezVou);
+            
+            //ViewBag.SeanceID = rendezVou.RendezVouID; 
+          //  ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
+     //       Create(rendezVou.RendezVouID);
+            return Create(rendezVou.RendezVouID); ;
         }
 
         // GET: RendezVous/Edit/5
@@ -103,7 +109,7 @@ namespace SPGD.Controllers
                 //db.SaveChanges();
                 unitOfWork.RendezVousRepository.UpdateRendezVou(rendezVou);
                 unitOfWork.Save();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Seances");
             }
             ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
             return View(rendezVou);
@@ -133,7 +139,7 @@ namespace SPGD.Controllers
             //db.RendezVous.Remove(rendezVou);
             //db.SaveChanges();
             unitOfWork.RendezVousRepository.DeleteRendezVou(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Seances");
         }
 
         protected override void Dispose(bool disposing)

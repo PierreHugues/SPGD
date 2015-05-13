@@ -4,21 +4,24 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Catalogue des séances</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Demander une séance", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AgentID)
+            @*Html.DisplayNameFor(model => model.AgentID)*@
+            Nom de l'agent
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MaisonID)
+            @*Html.DisplayNameFor(model => model.MaisonID)*@
+            Adresse de la maison
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StatusSeance)
+            @*Html.DisplayNameFor(model => model.StatusSeance)*@
+            Status de la séance
         </th>
         <th>
             Forfait Demandé
@@ -64,7 +67,12 @@
         @Html.DisplayNameFor(model => model.FraisSeanceTotal)
     </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.RendezVou.Commentaire)
+            @*@Html.DisplayNameFor(model => model.RendezVou.DateHeureRendezVous)*@
+            Horaire du rendez-vous
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.RendezVou.Commentaire)*@
+            Commentaire
         </th>
         <th></th>
     </tr>
@@ -135,7 +143,9 @@
     <td>
         @Html.DisplayFor(modelItem => item.FraisSeanceTotal)
     </td>*@
-
+        <td>
+            @Html.DisplayFor(modelItem => item.RendezVou.DateHeureRendezVous)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.RendezVou.Commentaire)
         </td>
