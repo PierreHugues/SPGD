@@ -79,8 +79,8 @@ namespace SPGD.Controllers
             return Create(rendezVou.RendezVouID); ;
         }
 
-        // GET: RendezVous/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: RendezVous/Reporter/5
+        public ActionResult Reporter(int? id)
         {
             if (id == null)
             {
@@ -95,18 +95,55 @@ namespace SPGD.Controllers
             return View(rendezVou);
         }
 
-        // POST: RendezVous/Edit/5
+        // POST: RendezVous/Reporter/5
         // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Completee,DateHeureRendezVous,DureeRendezVousReel,Commentaire,NbPhotoReel,RendezVouID")] RendezVou rendezVou)
+        public ActionResult Reporter([Bind(Include = "DateHeureRendezVous,Commentaire,RendezVouID")] RendezVou rendezVou)
         {
             if (ModelState.IsValid)
             {               
-
                 //db.Entry(rendezVou).State = EntityState.Modified;
                 //db.SaveChanges();
+                //RendezVou OldRendezVou = unitOfWork.RendezVousRepository.GetRendezVousByID(rendezVou.RendezVouID);
+                unitOfWork.RendezVousRepository.UpdateRendezVou(rendezVou);
+                unitOfWork.Save();
+                return RedirectToAction("Index", "Seances");
+            }
+            //ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
+            return View(rendezVou);
+        }
+
+        // GET: RendezVous/Terminer/5
+        public ActionResult Suivi(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            RendezVou rendezVou = unitOfWork.RendezVousRepository.GetByID(id);
+            if (rendezVou == null)
+            {
+                return HttpNotFound();
+            }
+            //ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
+            return View(rendezVou);
+        }
+
+        // POST: RendezVous/Terminer/5
+        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Suivi([Bind(Include = "NbPhotoReel,DureeRendezVousReel,Commentaire,RendezVouID,")] RendezVou rendezVou)
+        {
+            if (ModelState.IsValid)
+            {
+                //db.Entry(rendezVou).State = EntityState.Modified;
+                //db.SaveChanges();
+                //RendezVou OldRendezVou = unitOfWork.RendezVousRepository.GetRendezVousByID(rendezVou.RendezVouID);
+                rendezVou.Completee = true;
                 unitOfWork.RendezVousRepository.UpdateRendezVou(rendezVou);
                 unitOfWork.Save();
                 return RedirectToAction("Index", "Seances");

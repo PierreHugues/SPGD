@@ -229,7 +229,7 @@
     <Content Include="Views\RendezVous\Create.cshtml" />
     <Content Include="Views\RendezVous\Delete.cshtml" />
     <Content Include="Views\RendezVous\Details.cshtml" />
-    <Content Include="Views\RendezVous\Edit.cshtml" />
+    <Content Include="Views\RendezVous\Reporter.cshtml" />
     <Content Include="Views\RendezVous\Index.cshtml" />
     <Content Include="Views\Seances\PartialViewSeanceAvecRDV.cshtml" />
     <Content Include="Views\Seances\PartialViewSeanceSansRDV.cshtml" />
@@ -238,6 +238,7 @@
     <Content Include="Views\Agents\Details.cshtml" />
     <Content Include="Views\Agents\Edit.cshtml" />
     <Content Include="Views\Agents\Index.cshtml" />
+    <Content Include="Views\RendezVous\Suivi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
