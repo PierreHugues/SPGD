@@ -16,9 +16,12 @@ namespace SPGD.Models
             [DataType(DataType.DateTime)]
             [RDVDateRangeValidation]
             public System.DateTime DateHeureRendezVous { get; set; }
+
+            [RDVdureeZero]
             public int DureeRendezVousReel { get; set; }
 
             [RDVModifierNbPhotoValidation]
+            [RDVnbPhotoZero]
             public int NbPhotoReel { get; set; }
             public string Commentaire { get; set; }
 

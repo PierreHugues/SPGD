@@ -136,10 +136,11 @@ namespace SPGD.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Suivi([Bind(Include = "NbPhotoReel,DureeRendezVousReel,Commentaire,RendezVouID,")] RendezVou rendezVou)
+        public ActionResult Suivi([Bind(Include = "NbPhotoReel,DureeRendezVousReel,Commentaire,RendezVouID, DateHeureRendezVous")] RendezVou rendezVou)
         {
             if (ModelState.IsValid)
             {
+
                 //db.Entry(rendezVou).State = EntityState.Modified;
                 //db.SaveChanges();
                 //RendezVou OldRendezVou = unitOfWork.RendezVousRepository.GetRendezVousByID(rendezVou.RendezVouID);
