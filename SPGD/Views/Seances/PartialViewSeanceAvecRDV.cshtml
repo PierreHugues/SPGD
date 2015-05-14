@@ -55,6 +55,7 @@
                     @Html.DisplayNameFor(model => model.RendezVou.Commentaire)
                 </th>*@
             <th></th>
+            <th></th>
         </tr>
 
         @foreach (var item in Model.seancesAvecRDV)
@@ -125,9 +126,12 @@
                         <td>
                             @Html.ActionLink("Reporter", "Reporter", "RendezVous", new { id = item.SeanceID }, null)
                         </td>
-                <td>
-                    @Html.ActionLink("Suivi", "Suivi", "RendezVous", new { id = item.SeanceID }, null)
-                </td>
+                        <td>
+                            @Html.ActionLink("Suivi", "Suivi", "RendezVous", new { id = item.SeanceID }, null)
+                        </td>
+                    }
+                    else{
+                        <td></td><td></td>
                     }
                 @*
                     <td>
