@@ -29,8 +29,8 @@
     </Key>
     <Property Name="Completee" Type="bit" Nullable="false" />
     <Property Name="DateHeureRendezVous" Type="datetime" Nullable="false" />
-    <Property Name="DureeRendezVousReel" Type="int" Nullable="false" />
-    <Property Name="NbPhotoReel" Type="int" Nullable="false" />
+    <Property Name="DureeRendezVousReel" Type="int" />
+    <Property Name="NbPhotoReel" Type="int" />
     <Property Name="Commentaire" Type="nvarchar" MaxLength="100" />
     <Property Name="RendezVouID" Type="int" Nullable="false" />
   </EntityType>

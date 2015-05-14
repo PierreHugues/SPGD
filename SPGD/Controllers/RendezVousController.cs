@@ -66,8 +66,8 @@ namespace SPGD.Controllers
                // Seance seance = unitOfWork.SeanceRepository.GetSeanceByID(rendezVou.RendezVouID);
                 //rendezVou.Seance = seance;
 
-                rendezVou.DureeRendezVousReel = 0;
-                rendezVou.NbPhotoReel = 0;
+                //rendezVou.DureeRendezVousReel = 0;
+                //rendezVou.NbPhotoReel = 0;
                 unitOfWork.RendezVousRepository.InsertRendezVous(rendezVou);
                 unitOfWork.Save();
                 return RedirectToAction("Index", "Seances");

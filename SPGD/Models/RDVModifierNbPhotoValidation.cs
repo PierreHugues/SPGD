@@ -31,7 +31,7 @@ namespace SPGD.Models
                     {
                         if (DateTime.Now < RDV_BD.DateHeureRendezVous)
                         {
-                            var errorMessage = "Il est impossible de modifier le nombre de photos prises avant que le Rendez-Vous eut lieu.";
+                            var errorMessage = "Il est impossible de modifier le nombre de photos prises avant la date de rendez-vous.";
                             return new ValidationResult(errorMessage);
                         }
                     }

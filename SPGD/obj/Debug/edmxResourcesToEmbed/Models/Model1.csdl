@@ -16,8 +16,8 @@
     </Key>
     <Property Name="Completee" Type="Boolean" Nullable="false" />
     <Property Name="DateHeureRendezVous" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="DureeRendezVousReel" Type="Int32" Nullable="false" />
-    <Property Name="NbPhotoReel" Type="Int32" Nullable="false" />
+    <Property Name="DureeRendezVousReel" Type="Int32" />
+    <Property Name="NbPhotoReel" Type="Int32" />
     <Property Name="Commentaire" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="RendezVouID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Seance" Relationship="Self.FK_Seance_Rendezvoux_RendezVousID" FromRole="RendezVous" ToRole="Seance" />

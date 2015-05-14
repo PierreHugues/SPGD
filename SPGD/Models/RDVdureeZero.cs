@@ -9,12 +9,12 @@ namespace SPGD.Models
 {
     public class RDVdureeZero : ValidationAttribute
     {
-        private UnitOfWork unitOfWork = new UnitOfWork();
+        //private UnitOfWork unitOfWork = new UnitOfWork();
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            RendezVou RDV = (RendezVou)validationContext.ObjectInstance;
-            RendezVou RDV_BD = unitOfWork.RendezVousRepository.GetRendezVousByID(RDV.RendezVouID);
-            if (RDV_BD != null)
+            //RendezVou RDV = (RendezVou)validationContext.ObjectInstance;
+            //RendezVou RDV_BD = unitOfWork.RendezVousRepository.GetRendezVousByID(RDV.RendezVouID);
+            if (value != null)
             {
                 if ((int)value <= 0)
                 {

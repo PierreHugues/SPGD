@@ -16,8 +16,8 @@ namespace SPGD.Models
     {
         public bool Completee { get; set; }
         public System.DateTime DateHeureRendezVous { get; set; }
-        public int DureeRendezVousReel { get; set; }
-        public int NbPhotoReel { get; set; }
+        public Nullable<int> DureeRendezVousReel { get; set; }
+        public Nullable<int> NbPhotoReel { get; set; }
         public string Commentaire { get; set; }
         public int RendezVouID { get; set; }
     
