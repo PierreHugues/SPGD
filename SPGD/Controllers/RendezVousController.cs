@@ -103,12 +103,17 @@ namespace SPGD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Reporter([Bind(Include = "DateHeureRendezVous,Commentaire,RendezVouID")] RendezVou rendezVou)
         {
+            rendezVou.NbPhotoReel = 1;
+            rendezVou.DureeRendezVousReel = 1;
+
             if (ModelState.IsValid)
             {               
                 //db.Entry(rendezVou).State = EntityState.Modified;
                 //db.SaveChanges();
                 //RendezVou OldRendezVou = unitOfWork.RendezVousRepository.GetRendezVousByID(rendezVou.RendezVouID);
                 unitOfWork.RendezVousRepository.UpdateRendezVou(rendezVou);
+                rendezVou.NbPhotoReel = null;
+                rendezVou.DureeRendezVousReel = null;
                 unitOfWork.Save();
                 return RedirectToAction("Index", "Seances");
             }
