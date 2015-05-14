@@ -67,7 +67,11 @@ namespace SPGD.Controllers
             ViewBag.Datecourante = dateCourante.ToString(format);
             //ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire");
 
-            //ViewBag.AgentID = new SelectList(unitOfWork.AgentRepository.Get(), "AgentID", "LastName");
+
+            //ViewBag.AgentID = new SelectList(db.Agents, "AgentID", "LastName");
+            var agentquery = unitOfWork.AgentRepository.GetAgents();
+            ViewBag.AgentID = new SelectList(agentquery, "AgentID", "Nom");
+
             return View();
         }
 

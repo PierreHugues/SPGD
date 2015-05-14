@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using SPGD.DAL;
 
 namespace SPGD.Models
 {
     public class RDVdureeZero : ValidationAttribute
     {
+        private UnitOfWork unitOfWork = new UnitOfWork();
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-
-            if (value != null)
+            RendezVou RDV = (RendezVou)validationContext.ObjectInstance;
+            RendezVou RDV_BD = unitOfWork.RendezVousRepository.GetRendezVousByID(RDV.RendezVouID);
+            if (RDV_BD != null)
             {
                 if ((int)value <= 0)
                 {

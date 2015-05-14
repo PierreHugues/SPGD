@@ -56,6 +56,7 @@ namespace SPGD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "DateHeureRendezVous,Commentaire, RendezVouID")] RendezVou rendezVou)    // IL FAUT RÉSOUDRE ICI LE PROBLÈMEDU FAIT QUE rendezVous RECOIT TOUJOURS UN ID DE 0
         {
+
             if (ModelState.IsValid)
             {
                 //if (rendezVou.Seance.ToString() != "Demandée")
