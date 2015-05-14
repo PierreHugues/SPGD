@@ -20,7 +20,7 @@
             </th>
             <th>
                 @*@Html.DisplayNameFor(model => model.TypeForfaitDeBaseVoulu)*@
-                Forfait Demandé
+                Forfait
             </th>
             @*<th>
                     @Html.DisplayNameFor(model => model.FraisDeBaseReel)
@@ -62,7 +62,9 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.AgentID)
+                    @Html.DisplayFor(modelItem => item.Agent.Nom)
+                    ,
+                    @Html.DisplayFor(modelItem => item.Agent.Prenom)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MaisonID)

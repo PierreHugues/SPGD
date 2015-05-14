@@ -20,7 +20,7 @@
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.TypeForfaitDeBaseVoulu)*@
-            Forfait Demandé
+            Forfait demandé
         </th>
         @*<th>
                 @Html.DisplayNameFor(model => model.FraisDeBaseReel)
@@ -28,10 +28,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.FraisDeDeplacement)
             </th>*@
-        <th>
-            @*@Html.DisplayNameFor(model => model.RendezVou.DateHeureRendezVous)*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.RendezVou.DateHeureRendezVous)
             Horaire du rendez-vous
-        </th>
+        </th>*@
         <th>
             @*@Html.DisplayNameFor(model => model.RendezVou.Commentaire)*@
             Commentaire de Séance
@@ -63,7 +63,9 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AgentID)
+                @Html.DisplayFor(modelItem => item.Agent.Nom)
+                , 
+                @Html.DisplayFor(modelItem => item.Agent.Prenom)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MaisonID)
@@ -93,9 +95,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.FraisDeDeplacement)
                 </td>*@
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.RendezVou.DateHeureRendezVous)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Commentaire)
             </td>
