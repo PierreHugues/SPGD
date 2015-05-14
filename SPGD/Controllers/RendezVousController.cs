@@ -56,7 +56,8 @@ namespace SPGD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "DateHeureRendezVous,Commentaire, RendezVouID")] RendezVou rendezVou)    // IL FAUT RÉSOUDRE ICI LE PROBLÈMEDU FAIT QUE rendezVous RECOIT TOUJOURS UN ID DE 0
         {
-
+            ModelState.Remove("NbPhotoReel");
+            ModelState.Remove("DureeRendezVousReel");
             if (ModelState.IsValid)
             {
                 //if (rendezVou.Seance.ToString() != "Demandée")
@@ -103,8 +104,8 @@ namespace SPGD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Reporter([Bind(Include = "DateHeureRendezVous,Commentaire,RendezVouID")] RendezVou rendezVou)
         {
-            rendezVou.NbPhotoReel = 1;
-            rendezVou.DureeRendezVousReel = 1;
+            ModelState.Remove("NbPhotoReel");
+            ModelState.Remove("DureeRendezVousReel");
 
             if (ModelState.IsValid)
             {               
@@ -112,8 +113,8 @@ namespace SPGD.Controllers
                 //db.SaveChanges();
                 //RendezVou OldRendezVou = unitOfWork.RendezVousRepository.GetRendezVousByID(rendezVou.RendezVouID);
                 unitOfWork.RendezVousRepository.UpdateRendezVou(rendezVou);
-                rendezVou.NbPhotoReel = null;
-                rendezVou.DureeRendezVousReel = null;
+                //rendezVou.NbPhotoReel = null;
+                //rendezVou.DureeRendezVousReel = null;
                 unitOfWork.Save();
                 return RedirectToAction("Index", "Seances");
             }
@@ -146,7 +147,6 @@ namespace SPGD.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 //db.Entry(rendezVou).State = EntityState.Modified;
                 //db.SaveChanges();
                 //RendezVou OldRendezVou = unitOfWork.RendezVousRepository.GetRendezVousByID(rendezVou.RendezVouID);

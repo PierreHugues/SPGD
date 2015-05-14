@@ -18,12 +18,12 @@ namespace SPGD.Models
             public System.DateTime DateHeureRendezVous { get; set; }
 
             [RDVdureeZero]
-            [Required]
+            //[Required]
             public int DureeRendezVousReel { get; set; }
 
             [RDVModifierNbPhotoValidation]
             [RDVnbPhotoZero]
-            [Required]
+            //[Required]
             public int NbPhotoReel { get; set; }
             public string Commentaire { get; set; }
 
