@@ -124,10 +124,10 @@
                 {
                     @Html.ActionLink("Créer un RendezVous", "Create", "RendezVous", new { id = item.SeanceID }, null)
                 }
-                @if (item.StatusSeance == "Confirmée" || item.StatusSeance == "Reportée")
+                @*@if (item.StatusSeance == "Confirmée" || item.StatusSeance == "Reportée")
                 {
                     @Html.ActionLink("Consulter Rendez-Vous", "Edit", "RendezVous", new { id = item.SeanceID }, null)
-                }
+                }*@
             </td>
             @*<td>
                     @Html.ActionLink("Edit", "Edit", new { id=item.SeanceID }) |

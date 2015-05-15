@@ -132,7 +132,14 @@
                             @Html.ActionLink("Suivi", "Suivi", "RendezVous", new { id = item.SeanceID }, null)
                         </td>
                     }
-                    else{
+                    else if (item.StatusSeance == "Réalisée")
+                    {
+                        <td>
+                            @Html.ActionLink("Téléverser images", "Create", "Photos", new { id = item.SeanceID }, null)
+                        </td>
+                    }
+                    else
+                    {
                         <td></td><td></td>
                     }
                 @*

@@ -13,6 +13,7 @@ namespace SPGD.DAL
         private SeanceRepository seanceRepository;
         private RendezVousRepository rendezVousRepository;
         private AgentRepository agentRepository;
+        private PhotoRepository photoRepository;
 
 
         public SeanceRepository SeanceRepository
@@ -48,6 +49,18 @@ namespace SPGD.DAL
                     this.agentRepository = new AgentRepository(context);
                 }
                 return agentRepository;
+            }
+        }
+
+        public PhotoRepository PhotoRepository
+        {
+            get
+            {
+                if (this.photoRepository == null)
+                {
+                    this.photoRepository = new PhotoRepository(context);
+                }
+                return photoRepository;
             }
         }
 

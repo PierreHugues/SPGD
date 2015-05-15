@@ -23,6 +23,14 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <EntityType Name="Photo">
+    <Key>
+      <PropertyRef Name="PhotoID" />
+    </Key>
+    <Property Name="PhotoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SeanceID" Type="int" Nullable="false" />
+    <Property Name="PhotoPathName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
   <EntityType Name="RendezVous">
     <Key>
       <PropertyRef Name="RendezVouID" />
@@ -52,6 +60,18 @@
     <Property Name="DateDePaymentRecu" Type="datetime" />
     <Property Name="FraisSeanceTotal" Type="decimal" Precision="12" Scale="2" StoreGeneratedPattern="Computed" />
   </EntityType>
+  <Association Name="FK_Photo_SeanceID">
+    <End Role="Seance" Type="Self.Seance" Multiplicity="1" />
+    <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seance">
+        <PropertyRef Name="SeanceID" />
+      </Principal>
+      <Dependent Role="Photo">
+        <PropertyRef Name="SeanceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Seance_Agent_AgentID">
     <End Role="Agent" Type="Self.Agent" Multiplicity="1" />
     <End Role="Seance" Type="Self.Seance" Multiplicity="*" />
@@ -120,8 +140,13 @@
   <EntityContainer Name="H15_PROJET_E09ModelStoreContainer">
     <EntitySet Name="Agent" EntityType="Self.Agent" Schema="Agents" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Photo" EntityType="Self.Photo" Schema="Seances" store:Type="Tables" />
     <EntitySet Name="RendezVous" EntityType="Self.RendezVous" Schema="Seances" store:Type="Tables" />
     <EntitySet Name="Seance" EntityType="Self.Seance" Schema="Seances" store:Type="Tables" />
+    <AssociationSet Name="FK_Photo_SeanceID" Association="Self.FK_Photo_SeanceID">
+      <End Role="Seance" EntitySet="Seance" />
+      <End Role="Photo" EntitySet="Photo" />
+    </AssociationSet>
     <AssociationSet Name="FK_Seance_Agent_AgentID" Association="Self.FK_Seance_Agent_AgentID">
       <End Role="Agent" EntitySet="Agent" />
       <End Role="Seance" EntitySet="Seance" />

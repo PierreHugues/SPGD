@@ -14,6 +14,11 @@ namespace SPGD.Models
     
     public partial class Seance
     {
+        public Seance()
+        {
+            this.Photos = new HashSet<Photo>();
+        }
+    
         public int SeanceID { get; set; }
         public int AgentID { get; set; }
         public int MaisonID { get; set; }
@@ -30,5 +35,6 @@ namespace SPGD.Models
     
         public virtual RendezVou RendezVou { get; set; }
         public virtual Agent Agent { get; set; }
+        public virtual ICollection<Photo> Photos { get; set; }
     }
 }
