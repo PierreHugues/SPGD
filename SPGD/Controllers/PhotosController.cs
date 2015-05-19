@@ -62,6 +62,35 @@ namespace SPGD.Controllers
         {
             if (ModelState.IsValid)
             {
+                
+                string cheminDossierSeance = Request.PhysicalApplicationPath + "/images/" + photo.SeanceID.ToString();
+                DirectoryInfo directoryEnCours = new DirectoryInfo(cheminDossierSeance);
+
+                //var repertoire = Directory.CreateDirectory("C:/Users/1195096/Desktop/SPGD/SPGD/Images/" + photo.SeanceID.ToString());
+                //var repertoire = Directory.CreateDirectory(Request.PhysicalApplicationPath + "/images/" + photo.SeanceID.ToString());
+
+
+                if (Directory.Exists(cheminDossierSeance))  //Si le dossier existe déjà
+                {
+                    foreach (HttpPostedFileBase DonneePhoto in imageFile)
+                    {
+                        int compteur = directoryEnCours.GetFiles().Length +  1;
+
+                        String extention = DonneePhoto.FileName.Substring(DonneePhoto.FileName.LastIndexOf('.'));
+                        
+
+                        //int count = cheminDossierSeance.get
+                        DonneePhoto.SaveAs(cheminDossierSeance + "/" + "Photo" + compteur.ToString() + extention);
+                    }
+                }
+                else
+                {
+                    var repertoire = Directory.CreateDirectory(cheminDossierSeance);
+                    foreach (HttpPostedFileBase DonneePhoto in imageFile)
+                    {
+                        DonneePhoto.SaveAs(repertoire.FullName + "/" + "asd.jpg");
+                    }
+                }
                 //db.Photos.Add(photo);
                 //unitOfWork.PhotoRepository.InsertPhoto(photo);
 
@@ -72,7 +101,7 @@ namespace SPGD.Controllers
             }
 
             //ViewBag.SeanceID = new SelectList(db.Seances, "SeanceID", "StatusSeance", photo.SeanceID);
-            return View(imageFile);
+            return View();
         }
 
         // GET: Photos/Edit/5

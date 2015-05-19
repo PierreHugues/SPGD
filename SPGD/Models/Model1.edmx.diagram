@@ -11,7 +11,7 @@
         <AssociationConnector Association="H15_PROJET_E09Model.FK_Seance_Rendezvoux_RendezVousID" ManuallyRouted="false" />
         <EntityTypeShape EntityType="H15_PROJET_E09Model.Agent" Width="1.5" PointX="5.875" PointY="3.5" />
         <AssociationConnector Association="H15_PROJET_E09Model.FK_Seance_Agent_AgentID" />
-        <EntityTypeShape EntityType="H15_PROJET_E09Model.Photo" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="H15_PROJET_E09Model.Photo" Width="1.5" PointX="2.875" PointY="5.5" />
         <AssociationConnector Association="H15_PROJET_E09Model.FK_Photo_SeanceID" />
       </Diagram>
     </edmx:Diagrams>

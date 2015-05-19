@@ -6,7 +6,7 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Photos", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -37,7 +37,7 @@
                 @Html.ValidationMessageFor(model => model.PhotoPathName, "", new { @class = "text-danger" })
             </div>
         </div>*@
-        <input type="file" name="imageFile" multiple="multiple"/>
+        <input type="file" name="imageFile" multiple/>
         @Html.HiddenFor(model => model.SeanceID, new { Value = ViewBag.SeanceID })
 
         <div class="form-group">
