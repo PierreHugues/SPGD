@@ -109,12 +109,8 @@ namespace SPGD.Controllers
 
             if (ModelState.IsValid)
             {               
-                //db.Entry(rendezVou).State = EntityState.Modified;
-                //db.SaveChanges();
-                //RendezVou OldRendezVou = unitOfWork.RendezVousRepository.GetRendezVousByID(rendezVou.RendezVouID);
+
                 unitOfWork.RendezVousRepository.UpdateRendezVou(rendezVou);
-                //rendezVou.NbPhotoReel = null;
-                //rendezVou.DureeRendezVousReel = null;
                 unitOfWork.Save();
                 return RedirectToAction("Index", "Seances");
             }
@@ -145,12 +141,14 @@ namespace SPGD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Suivi([Bind(Include = "NbPhotoReel,DureeRendezVousReel,Commentaire,RendezVouID, DateHeureRendezVous")] RendezVou rendezVou)
         {
+            ModelState.Remove("DateHeureRendezVous");
             if (ModelState.IsValid)
             {
                 //db.Entry(rendezVou).State = EntityState.Modified;
                 //db.SaveChanges();
                 //RendezVou OldRendezVou = unitOfWork.RendezVousRepository.GetRendezVousByID(rendezVou.RendezVouID);
                 rendezVou.Completee = true;
+                
                 unitOfWork.RendezVousRepository.UpdateRendezVou(rendezVou);
                 unitOfWork.Save();
                 return RedirectToAction("Index", "Seances");
