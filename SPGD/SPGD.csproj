@@ -159,6 +159,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Regles_Affaires\PhotoExtensionValidation.cs" />
     <Compile Include="Regles_Affaires\RDVDateRangeValidation.cs" />
     <Compile Include="Regles_Affaires\RDVdureeZero.cs" />
     <Compile Include="Regles_Affaires\RDVModifierNbPhotoValidation.cs" />

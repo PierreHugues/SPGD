@@ -11,7 +11,8 @@ using SPGD.DAL;
 
 using System.Security.AccessControl; //pour le controle des accès
 using System.IO; //traitement des fichiers
-using System.Configuration; //utiliser le Web.config
+using System.Configuration;
+using SPGD.Regles_Affaires; //utiliser le Web.config
 
 namespace SPGD.Controllers
 {
@@ -64,8 +65,13 @@ namespace SPGD.Controllers
             {
                 //var repertoire = Directory.CreateDirectory(Request.PhysicalApplicationPath + "/images/" + photo.SeanceID.ToString());
 
-
+                //PhotoExtensionValidation asd = new PhotoExtensionValidation
                 string cheminDossierSeance = Request.PhysicalApplicationPath + "/images/" + photo.SeanceID.ToString();
+
+
+
+
+
 
                 //****************QUESTION: Est-ce qu'on sauvegarde le path avec le "~"??????************************
                 //string cheminDossierSeance = "~" + "/images/" + photo.SeanceID.ToString();
@@ -88,17 +94,24 @@ namespace SPGD.Controllers
                 //Ajout de photos
                 foreach (HttpPostedFileBase DonneePhoto in imageFile)
                 {
+
+
                     String extention = DonneePhoto.FileName.Substring(DonneePhoto.FileName.LastIndexOf('.'));
 
-                    DonneePhoto.SaveAs(directoryEnCours.FullName + "/" + "Photo" + compteur.ToString() + extention);
-                    Photo photoToInsert = new Photo();
-                    photoToInsert.SeanceID = photo.SeanceID;
-                    photoToInsert.PhotoPathName = "/images/" + photo.SeanceID.ToString() + "/" + "Photo" + compteur.ToString() + extention;
+                    //****************************Attribut perso suffisant? *****************************************
+                    if (extention == ".png" || extention == ".jpg" || extention == ".jpeg")
+                    {
 
-                    unitOfWork.PhotoRepository.InsertPhoto(photoToInsert);
+                        DonneePhoto.SaveAs(directoryEnCours.FullName + "/" + "Photo" + compteur.ToString() + extention);
+                        Photo photoToInsert = new Photo();
+                        photoToInsert.SeanceID = photo.SeanceID;
+                        photoToInsert.PhotoPathName = "/images/" + photo.SeanceID.ToString() + "/" + "Photo" + compteur.ToString() + extention;
+
+                        unitOfWork.PhotoRepository.InsertPhoto(photoToInsert);
 
 
-                    compteur++;
+                        compteur++;
+                    }
                 }
 
 

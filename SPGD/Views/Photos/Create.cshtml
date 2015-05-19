@@ -37,7 +37,10 @@
                 @Html.ValidationMessageFor(model => model.PhotoPathName, "", new { @class = "text-danger" })
             </div>
         </div>*@
+
         <input type="file" name="imageFile" multiple/>
+
+
         @Html.HiddenFor(model => model.SeanceID, new { Value = ViewBag.SeanceID })
 
         <div class="form-group">

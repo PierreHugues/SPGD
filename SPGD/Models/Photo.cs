@@ -9,6 +9,7 @@
 
 namespace SPGD.Models
 {
+    using SPGD.Regles_Affaires;
     using System;
     using System.Collections.Generic;
     
@@ -16,6 +17,8 @@ namespace SPGD.Models
     {
         public int PhotoID { get; set; }
         public int SeanceID { get; set; }
+
+        [PhotoExtensionValidation]
         public string PhotoPathName { get; set; }
     
         public virtual Seance Seance { get; set; }
