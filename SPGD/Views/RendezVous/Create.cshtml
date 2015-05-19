@@ -28,9 +28,12 @@
 *@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DateHeureRendezVous, htmlAttributes: new { @class = "control-label col-md-2"})
+            <div class="col-md-2">
+                <h4>Date et heure du rendez-vous</h4>
+            </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateHeureRendezVous, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.Datecourante } })
+                @Html.EditorFor(model => model.DateHeureRendezVous, new { htmlAttributes = new { @class = "form-control",@style = "display:inline", @Value = ViewBag.Datecourante } })
+                <text style="color:red">*</text> 
                 @Html.ValidationMessageFor(model => model.DateHeureRendezVous, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,7 +57,9 @@
         *@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Commentaire, "Commentaire", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <h4>Commentaire</h4>
+            </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Commentaire, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Commentaire, "", new { @class = "text-danger" })
@@ -82,8 +87,8 @@
             
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-10">
+                <input type="submit" value="Création du Rendez-Vous" class="btn btn-lg" />
             </div>
         </div>
     </div>
