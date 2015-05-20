@@ -190,7 +190,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\AgentData.cs" />
     <Compile Include="ViewModel\PhotographeData.cs" />
     <Compile Include="ViewModel\SeanceData.cs" />
   </ItemGroup>
@@ -257,8 +256,8 @@
     <Content Include="Views\RendezVous\Details.cshtml" />
     <Content Include="Views\RendezVous\Reporter.cshtml" />
     <Content Include="Views\RendezVous\Index.cshtml" />
-    <Content Include="Views\Seances\PartialViewSeanceAvecRDV.cshtml" />
-    <Content Include="Views\Seances\PartialViewSeanceSansRDV.cshtml" />
+    <Content Include="Views\Shared\PartialViewSeanceAvecRDV.cshtml" />
+    <Content Include="Views\Shared\PartialViewSeanceSansRDV.cshtml" />
     <Content Include="Views\Agents\Create.cshtml" />
     <Content Include="Views\Agents\Delete.cshtml" />
     <Content Include="Views\Agents\Details.cshtml" />

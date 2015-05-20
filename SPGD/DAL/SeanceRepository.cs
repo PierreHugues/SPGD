@@ -15,8 +15,6 @@ namespace SPGD.DAL
             IEnumerable<Seance> seances;
             seances = Get().Where(s=>s.RendezVou != null);
             seances = seances.OrderByDescending(s => s.DateDebutDeSeance).OrderBy(s => s.RendezVou.DateHeureRendezVous);
-          //  var seances = (from s in seances
-           //                    join r in rendezvous on s.SeanceID equals r.)
             return seances;
         }
 

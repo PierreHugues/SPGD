@@ -14,30 +14,16 @@ namespace SPGD.Controllers
 {
     public class SeancesController : Controller
     {
-        private H15_PROJET_E09Entities1 db = new H15_PROJET_E09Entities1();
+        //private H15_PROJET_E09Entities1 db = new H15_PROJET_E09Entities1();
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: Seances
         public ActionResult Index()
         {
-            //var seances = db.Seances.Include(s => s.RendezVou);
-            //return View(seances.ToList());
-           // ViewBag.RDV = db.RendezVous;
-
-            //ViewBag.SeancesAvecRDV = unitOfWork.SeanceRepository.GetSeancesRDV();
-            //ViewBag.SeancesSansRDV = unitOfWork.SeanceRepository.GetSeancesSansRDV();
-
             var viewModel = new SeanceData();
 
-            //if()
-            //{
-                viewModel.seancesSansRDV = unitOfWork.SeanceRepository.GetSeancesSansRDV();
-            //}
-
-            //if()
-            //{
-                viewModel.seancesAvecRDV = unitOfWork.SeanceRepository.GetSeancesRDV();
-            //}
+            viewModel.seancesSansRDV = unitOfWork.SeanceRepository.GetSeancesSansRDV();
+            viewModel.seancesAvecRDV = unitOfWork.SeanceRepository.GetSeancesRDV();
 
             return View(viewModel);
         }

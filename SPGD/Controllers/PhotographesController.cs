@@ -20,7 +20,6 @@ namespace SPGD.Controllers
         // GET: Photographes
         public ActionResult Index(int? id)
         {
-            //return View(db.Photographes.ToList());
             var viewModel = new PhotographeData();
 
             viewModel.Photographes = unitOfWork.PhotographeRepository.GetPhotographes();
@@ -31,8 +30,10 @@ namespace SPGD.Controllers
                 ViewBag.SelectedPhotographePrenom = unitOfWork.PhotographeRepository.GetPhotographeByID(id).Prenom;
                 ViewBag.SelectedPhotographeNom = unitOfWork.PhotographeRepository.GetPhotographeByID(id).Nom;
 
-                //Obtenir les seances du photographe
-                viewModel.Seances = unitOfWork.PhotographeRepository.GetSeancesSelonPhotographe(id.Value);
+                //Obtenir les seances (obligatoirement avec RDV) du photographe
+                var seanceData = new SeanceData();
+                seanceData.seancesAvecRDV = unitOfWork.PhotographeRepository.GetSeancesSelonPhotographe(id.Value);
+                viewModel.SeanceData = seanceData;
             }
 
             return View(viewModel);

@@ -48,12 +48,5 @@ namespace SPGD.DAL
         //    seances = seances.OrderByDescending(s => s.DateDebutDeSeance);
         //    return seances;
         //}
-        //public IEnumerable<Seance> GetSeancesSelonPhotographe(int id)
-        //{
-        //    IEnumerable<Seance> seances;
-        //    seances = Get().Where(s => s.PhotographeID == id);
-        //    seances = seances.OrderByDescending(s => s.DateDebutDeSeance);
-        //    return seances;
-        //}
     }
 }

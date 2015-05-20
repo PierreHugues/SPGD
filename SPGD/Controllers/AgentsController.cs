@@ -20,20 +20,7 @@ namespace SPGD.Controllers
         // GET: Agents
         public ActionResult Index(int? id)
         {
-            var viewModel = new AgentData();
-
-            viewModel.Agents = unitOfWork.AgentRepository.GetAgents();
-
-            if(id != null)
-            {
-                ViewBag.SelectedAgentNom = unitOfWork.AgentRepository.GetAgentByID(id).Prenom;
-                ViewBag.SelectedAgentNom = unitOfWork.AgentRepository.GetAgentByID(id).Nom;
-
-                //Obtenir les seances de l'agent selectionné
-                //viewModel.Seances = unitOfWork.AgentRepository.GetAgents();
-            }
-
-            return View(viewModel);
+            return View(unitOfWork.AgentRepository.GetAgents());
         }
 
         // GET: Agents/Details/5
@@ -46,11 +33,25 @@ namespace SPGD.Controllers
             //Agent agent = db.Agents.Find(id);
             Agent agent = unitOfWork.AgentRepository.GetAgentByID(id);
 
+
+            var viewModel = new SeanceData();
+
+            if (id != null)
+            {
+                ViewBag.SelectedAgentPrenom = unitOfWork.AgentRepository.GetAgentByID(id).Prenom;
+                ViewBag.SelectedAgentNom = unitOfWork.AgentRepository.GetAgentByID(id).Nom;
+
+                //Obtenir les seances de l'agent selectionné
+                viewModel.seancesSansRDV = unitOfWork.AgentRepository.GetSeancesDerniereAnnéeSelonAgent(id.Value).Where(s=>s.RendezVou == null);
+                viewModel.seancesAvecRDV = unitOfWork.AgentRepository.GetSeancesDerniereAnnéeSelonAgent(id.Value).Where(s=>s.RendezVou != null);
+            }
+
+
             if (agent == null)
             {
                 return HttpNotFound();
             }
-            return View(agent);
+            return View(viewModel);
         }
 
         // GET: Agents/Create
