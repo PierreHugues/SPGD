@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SPGD.Models.Agent>
+﻿@model PagedList.IPagedList<SPGD.Models.Agent>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -12,25 +13,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nom)
+            Nom
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Prenom)
+            Prenom
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Telephone1)
+            Telephone 1
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Telephone2)
+            Telephone 2
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Courriel1)
+            Courriel 1
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Courriel2)
+            Courriel 2
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AdresseBureau)
+            Adresse Bureau
         </th>
         <th></th>
     </tr>
@@ -65,5 +66,9 @@
         </td>
     </tr>
 }
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+
 
 </table>

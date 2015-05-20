@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using SPGD.Models;
 using SPGD.DAL;
 using SPGD.ViewModel;
+using PagedList;
 
 namespace SPGD.Controllers
 {
@@ -18,9 +19,11 @@ namespace SPGD.Controllers
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: Agents
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? page)
         {
-            return View(unitOfWork.AgentRepository.GetAgents());
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(unitOfWork.AgentRepository.GetAgents().ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Agents/Details/5
