@@ -226,3 +226,7 @@ C:\Users\1143848\Documents\GitHub\SPGD\SPGD\bin\fr\System.Web.WebPages.Razor.res
 C:\Users\1143848\Documents\GitHub\SPGD\SPGD\obj\Debug\SPGD.csprojResolveAssemblyReference.cache
 C:\Users\1143848\Documents\GitHub\SPGD\SPGD\obj\Debug\SPGD.dll
 C:\Users\1143848\Documents\GitHub\SPGD\SPGD\obj\Debug\SPGD.pdb
+C:\Users\1195096\Desktop\SPGD\SPGD\bin\PagedList.dll
+C:\Users\1195096\Desktop\SPGD\SPGD\bin\PagedList.Mvc.dll
+C:\Users\1195096\Desktop\SPGD\SPGD\bin\PagedList.xml
+C:\Users\1195096\Desktop\SPGD\SPGD\bin\PagedList.Mvc.xml

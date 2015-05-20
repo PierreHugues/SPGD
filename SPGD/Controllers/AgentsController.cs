@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using SPGD.Models;
 using SPGD.DAL;
 using SPGD.ViewModel;
+using PagedList;
 
 namespace SPGD.Controllers
 {
@@ -18,8 +19,9 @@ namespace SPGD.Controllers
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: Agents
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? page)
         {
+<<<<<<< HEAD
             var viewModel = new AgentData();
 
             viewModel.Agents = unitOfWork.AgentRepository.GetAgents();
@@ -31,6 +33,11 @@ namespace SPGD.Controllers
             }
 
             return View(viewModel);
+=======
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(unitOfWork.AgentRepository.GetAgents().ToPagedList(pageNumber, pageSize));
+>>>>>>> origin/master
         }
 
         // GET: Agents/Details/5
@@ -42,11 +49,25 @@ namespace SPGD.Controllers
             }
             Agent agent = unitOfWork.AgentRepository.GetAgentByID(id);
 
+
+            var viewModel = new SeanceData();
+
+            if (id != null)
+            {
+                ViewBag.SelectedAgentPrenom = unitOfWork.AgentRepository.GetAgentByID(id).Prenom;
+                ViewBag.SelectedAgentNom = unitOfWork.AgentRepository.GetAgentByID(id).Nom;
+
+                //Obtenir les seances de l'agent selectionné
+                viewModel.seancesSansRDV = unitOfWork.AgentRepository.GetSeancesDerniereAnnéeSelonAgent(id.Value).Where(s=>s.RendezVou == null);
+                viewModel.seancesAvecRDV = unitOfWork.AgentRepository.GetSeancesDerniereAnnéeSelonAgent(id.Value).Where(s=>s.RendezVou != null);
+            }
+
+
             if (agent == null)
             {
                 return HttpNotFound();
             }
-            return View(agent);
+            return View(viewModel);
         }
 
         // GET: Agents/Create

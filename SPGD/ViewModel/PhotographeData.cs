@@ -9,6 +9,8 @@ namespace SPGD.ViewModel
     public class PhotographeData
     {
         public IEnumerable<Photographe> Photographes { get; set; }
-        public IEnumerable<Seance> Seances { get; set; }
+
+        public ViewModel.SeanceData SeanceData { get; set; }
+        //public IEnumerable<Seance> Seances { get; set; }
     }
 }
