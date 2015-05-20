@@ -42,6 +42,8 @@
     <NavigationProperty Name="RendezVou" Relationship="Self.FK_Seance_Rendezvoux_RendezVousID" FromRole="Seance" ToRole="RendezVous" />
     <NavigationProperty Name="Agent" Relationship="H15_PROJET_E09Model.FK_Seance_Agent_AgentID" FromRole="Seance" ToRole="Agent" />
     <NavigationProperty Name="Photos" Relationship="H15_PROJET_E09Model.FK_Photo_SeanceID" FromRole="Seance" ToRole="Photo" />
+    <Property Name="PhotographeID" Type="Int32" />
+    <NavigationProperty Name="Photographe" Relationship="H15_PROJET_E09Model.FK_Seance_Photographe_PhotographeID" FromRole="Seance" ToRole="Photographe" />
   </EntityType>
   <Association Name="FK_Seance_Rendezvoux_RendezVousID">
     <End Role="Seance" Type="Self.Seance" Multiplicity="1" />
@@ -107,6 +109,11 @@
       <End Role="Seance" EntitySet="Seances" />
       <End Role="Photo" EntitySet="Photos" />
     </AssociationSet>
+    <EntitySet Name="Photographes" EntityType="H15_PROJET_E09Model.Photographe" />
+    <AssociationSet Name="FK_Seance_Photographe_PhotographeID" Association="H15_PROJET_E09Model.FK_Seance_Photographe_PhotographeID">
+      <End Role="Photographe" EntitySet="Photographes" />
+      <End Role="Seance" EntitySet="Seances" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Agent">
     <Key>
@@ -168,6 +175,31 @@
       </Principal>
       <Dependent Role="Photo">
         <PropertyRef Name="SeanceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Photographe">
+    <Key>
+      <PropertyRef Name="PhotographeID" />
+    </Key>
+    <Property Name="PhotographeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Prenom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone1" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Courriel1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Courriel2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Seances" Relationship="H15_PROJET_E09Model.FK_Seance_Photographe_PhotographeID" FromRole="Photographe" ToRole="Seance" />
+  </EntityType>
+  <Association Name="FK_Seance_Photographe_PhotographeID">
+    <End Type="H15_PROJET_E09Model.Photographe" Role="Photographe" Multiplicity="0..1" />
+    <End Type="H15_PROJET_E09Model.Seance" Role="Seance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photographe">
+        <PropertyRef Name="PhotographeID" />
+      </Principal>
+      <Dependent Role="Seance">
+        <PropertyRef Name="PhotographeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

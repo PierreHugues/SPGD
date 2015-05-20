@@ -1,0 +1,178 @@
+﻿@*@model IEnumerable<SPGD.Models.Photographe>*@
+@model SPGD.ViewModel.PhotographeData
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Photographes.First().Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photographes.First().Prenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photographes.First().Telephone1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photographes.First().Telephone2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photographes.First().Courriel1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photographes.First().Courriel2)
+        </th>
+        <th></th>
+    </tr>
+    
+
+        @foreach (var item in Model.Photographes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prenom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telephone1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telephone2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courriel1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courriel2)
+                </td>
+                <td>
+                    @Html.ActionLink("Select", "Index", new { id = item.PhotographeID }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PhotographeID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PhotographeID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PhotographeID })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+@if(Model.Seances != null)
+{
+    <h2>Les séances du photographe @ViewBag.SelectedPhotographePrenom @ViewBag.SelectedPhotographeNom</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Seances.First().Agent.Nom)*@
+                Nom de l'agent
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Photographes.First().Prenom)*@
+                Adresse de la maison
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Photographes.First().Telephone1)*@
+                Status de la séance
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Photographes.First().Telephone2)*@
+                Forfait
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Photographes.First().Courriel1)*@
+                Horaire du rendez-vous
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Photographes.First().Courriel2)*@
+                Commentaire de la séance
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Seances)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Agent.Nom)
+                    ,
+                    @Html.DisplayFor(modelItem => item.Agent.Prenom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaisonID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusSeance)
+                </td>
+                <td>
+                    @{var typeForfaitValeurNumerique = item.TypeForfaitDeBaseVoulu;}
+                    @if (typeForfaitValeurNumerique == 1)
+                    {
+                    <td>Bronze</td>
+                    }
+                    @if (typeForfaitValeurNumerique == 2)
+                    {
+                        <td>Argent</td>
+                    }
+                    @if (typeForfaitValeurNumerique == 3)
+                    {
+                        <td>Or</td>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RendezVou.DateHeureRendezVous)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Commentaire)
+                </td>
+
+                @if (item.StatusSeance == "Confirmée" || item.StatusSeance == "Reportée")
+                    {
+                        <td>
+                            @Html.ActionLink("Reporter", "Reporter", "RendezVous", new { id = item.SeanceID }, null)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Suivi", "Suivi", "RendezVous", new { id = item.SeanceID }, null)
+                        </td>
+                    }
+                else if (item.StatusSeance == "Réalisée")
+                {
+                    <td>
+                        @Html.ActionLink("Téléverser images", "Create", "Photos", new { id = item.SeanceID }, null)
+                    </td>
+                    <td></td>
+                }
+                else if (item.StatusSeance == "Livrée")
+                {
+                    <td>
+                        @Html.ActionLink("Téléverser images", "Create", "Photos", new { id = item.SeanceID }, null)
+                    </td>
+                    if (item.Photos != null)
+                    {
+                        <td>@Html.ActionLink("Afficher les photos", "Details", new { id = item.SeanceID })</td>
+                    }
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                }
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PhotographeID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PhotographeID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PhotographeID })
+                </td>*@
+            </tr>
+            }
+
+    </table>
+}

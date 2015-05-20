@@ -27,6 +27,7 @@
     <EntitySetMapping Name="Seances">
       <EntityTypeMapping TypeName="H15_PROJET_E09Model.Seance">
         <MappingFragment StoreEntitySet="Seance">
+          <ScalarProperty Name="PhotographeID" ColumnName="PhotographeID" />
           <ScalarProperty Name="SeanceID" ColumnName="SeanceID" />
           <ScalarProperty Name="AgentID" ColumnName="AgentID" />
           <ScalarProperty Name="MaisonID" ColumnName="MaisonID" />
@@ -96,6 +97,19 @@
           <ScalarProperty Name="PhotoPathName" ColumnName="PhotoPathName" />
           <ScalarProperty Name="SeanceID" ColumnName="SeanceID" />
           <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Photographes">
+      <EntityTypeMapping TypeName="H15_PROJET_E09Model.Photographe">
+        <MappingFragment StoreEntitySet="Photographe">
+          <ScalarProperty Name="Courriel2" ColumnName="Courriel2" />
+          <ScalarProperty Name="Courriel1" ColumnName="Courriel1" />
+          <ScalarProperty Name="Telephone2" ColumnName="Telephone2" />
+          <ScalarProperty Name="Telephone1" ColumnName="Telephone1" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="PhotographeID" ColumnName="PhotographeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -28,6 +28,18 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Photographe">
+          <Key>
+            <PropertyRef Name="PhotographeID" />
+          </Key>
+          <Property Name="PhotographeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telephone1" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Telephone2" Type="nvarchar" MaxLength="10" />
+          <Property Name="Courriel1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Courriel2" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Photo">
           <Key>
             <PropertyRef Name="PhotoID" />
@@ -64,6 +76,7 @@
           <Property Name="DateRemisePhoto" Type="datetime" />
           <Property Name="DateDePaymentRecu" Type="datetime" />
           <Property Name="FraisSeanceTotal" Type="decimal" Precision="12" Scale="2" StoreGeneratedPattern="Computed" />
+          <Property Name="PhotographeID" Type="int" />
         </EntityType>
         <Association Name="FK_Photo_SeanceID">
           <End Role="Seance" Type="Self.Seance" Multiplicity="1" />
@@ -86,6 +99,18 @@
             </Principal>
             <Dependent Role="Seance">
               <PropertyRef Name="AgentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seance_Photographe_PhotographeID">
+          <End Role="Photographe" Type="Self.Photographe" Multiplicity="0..1" />
+          <End Role="Seance" Type="Self.Seance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photographe">
+              <PropertyRef Name="PhotographeID" />
+            </Principal>
+            <Dependent Role="Seance">
+              <PropertyRef Name="PhotographeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -145,6 +170,7 @@
         <EntityContainer Name="H15_PROJET_E09ModelStoreContainer">
           <EntitySet Name="Agent" EntityType="Self.Agent" Schema="Agents" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Photographe" EntityType="Self.Photographe" Schema="Photographes" store:Type="Tables" />
           <EntitySet Name="Photo" EntityType="Self.Photo" Schema="Seances" store:Type="Tables" />
           <EntitySet Name="RendezVous" EntityType="Self.RendezVous" Schema="Seances" store:Type="Tables" />
           <EntitySet Name="Seance" EntityType="Self.Seance" Schema="Seances" store:Type="Tables" />
@@ -154,6 +180,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Seance_Agent_AgentID" Association="Self.FK_Seance_Agent_AgentID">
             <End Role="Agent" EntitySet="Agent" />
+            <End Role="Seance" EntitySet="Seance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seance_Photographe_PhotographeID" Association="Self.FK_Seance_Photographe_PhotographeID">
+            <End Role="Photographe" EntitySet="Photographe" />
             <End Role="Seance" EntitySet="Seance" />
           </AssociationSet>
           <AssociationSet Name="FK_Seance_Rendezvoux_RendezVousID" Association="Self.FK_Seance_Rendezvoux_RendezVousID">
@@ -207,6 +237,8 @@
           <NavigationProperty Name="RendezVou" Relationship="Self.FK_Seance_Rendezvoux_RendezVousID" FromRole="Seance" ToRole="RendezVous" />
           <NavigationProperty Name="Agent" Relationship="H15_PROJET_E09Model.FK_Seance_Agent_AgentID" FromRole="Seance" ToRole="Agent" />
           <NavigationProperty Name="Photos" Relationship="H15_PROJET_E09Model.FK_Photo_SeanceID" FromRole="Seance" ToRole="Photo" />
+          <Property Name="PhotographeID" Type="Int32" />
+          <NavigationProperty Name="Photographe" Relationship="H15_PROJET_E09Model.FK_Seance_Photographe_PhotographeID" FromRole="Seance" ToRole="Photographe" />
         </EntityType>
         <Association Name="FK_Seance_Rendezvoux_RendezVousID">
           <End Role="Seance" Type="Self.Seance" Multiplicity="1" />
@@ -272,6 +304,11 @@
             <End Role="Seance" EntitySet="Seances" />
             <End Role="Photo" EntitySet="Photos" />
           </AssociationSet>
+          <EntitySet Name="Photographes" EntityType="H15_PROJET_E09Model.Photographe" />
+          <AssociationSet Name="FK_Seance_Photographe_PhotographeID" Association="H15_PROJET_E09Model.FK_Seance_Photographe_PhotographeID">
+            <End Role="Photographe" EntitySet="Photographes" />
+            <End Role="Seance" EntitySet="Seances" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Agent">
           <Key>
@@ -336,6 +373,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Photographe">
+          <Key>
+            <PropertyRef Name="PhotographeID" />
+          </Key>
+          <Property Name="PhotographeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prenom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone1" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Courriel1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Courriel2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Seances" Relationship="H15_PROJET_E09Model.FK_Seance_Photographe_PhotographeID" FromRole="Photographe" ToRole="Seance" />
+        </EntityType>
+        <Association Name="FK_Seance_Photographe_PhotographeID">
+          <End Type="H15_PROJET_E09Model.Photographe" Role="Photographe" Multiplicity="0..1" />
+          <End Type="H15_PROJET_E09Model.Seance" Role="Seance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photographe">
+              <PropertyRef Name="PhotographeID" />
+            </Principal>
+            <Dependent Role="Seance">
+              <PropertyRef Name="PhotographeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -368,6 +430,7 @@
           <EntitySetMapping Name="Seances">
             <EntityTypeMapping TypeName="H15_PROJET_E09Model.Seance">
               <MappingFragment StoreEntitySet="Seance">
+                <ScalarProperty Name="PhotographeID" ColumnName="PhotographeID" />
                 <ScalarProperty Name="SeanceID" ColumnName="SeanceID" />
                 <ScalarProperty Name="AgentID" ColumnName="AgentID" />
                 <ScalarProperty Name="MaisonID" ColumnName="MaisonID" />
@@ -437,6 +500,19 @@
                 <ScalarProperty Name="PhotoPathName" ColumnName="PhotoPathName" />
                 <ScalarProperty Name="SeanceID" ColumnName="SeanceID" />
                 <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photographes">
+            <EntityTypeMapping TypeName="H15_PROJET_E09Model.Photographe">
+              <MappingFragment StoreEntitySet="Photographe">
+                <ScalarProperty Name="Courriel2" ColumnName="Courriel2" />
+                <ScalarProperty Name="Courriel1" ColumnName="Courriel1" />
+                <ScalarProperty Name="Telephone2" ColumnName="Telephone2" />
+                <ScalarProperty Name="Telephone1" ColumnName="Telephone1" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="PhotographeID" ColumnName="PhotographeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -12,12 +12,21 @@ namespace SPGD.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Photo
+    public partial class Photographe
     {
-        public int PhotoID { get; set; }
-        public int SeanceID { get; set; }
-        public string PhotoPathName { get; set; }
+        public Photographe()
+        {
+            this.Seances = new HashSet<Seance>();
+        }
     
-        public virtual Seance Seance { get; set; }
+        public int PhotographeID { get; set; }
+        public string Nom { get; set; }
+        public string Prenom { get; set; }
+        public string Telephone1 { get; set; }
+        public string Telephone2 { get; set; }
+        public string Courriel1 { get; set; }
+        public string Courriel2 { get; set; }
+    
+        public virtual ICollection<Seance> Seances { get; set; }
     }
 }

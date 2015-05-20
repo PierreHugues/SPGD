@@ -32,9 +32,11 @@ namespace SPGD.Models
         public Nullable<System.DateTime> DateRemisePhoto { get; set; }
         public Nullable<System.DateTime> DateDePaymentRecu { get; set; }
         public Nullable<decimal> FraisSeanceTotal { get; set; }
+        public Nullable<int> PhotographeID { get; set; }
     
         public virtual RendezVou RendezVou { get; set; }
         public virtual Agent Agent { get; set; }
         public virtual ICollection<Photo> Photos { get; set; }
+        public virtual Photographe Photographe { get; set; }
     }
 }

@@ -23,6 +23,18 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <EntityType Name="Photographe">
+    <Key>
+      <PropertyRef Name="PhotographeID" />
+    </Key>
+    <Property Name="PhotographeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Telephone1" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Telephone2" Type="nvarchar" MaxLength="10" />
+    <Property Name="Courriel1" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Courriel2" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Photo">
     <Key>
       <PropertyRef Name="PhotoID" />
@@ -59,6 +71,7 @@
     <Property Name="DateRemisePhoto" Type="datetime" />
     <Property Name="DateDePaymentRecu" Type="datetime" />
     <Property Name="FraisSeanceTotal" Type="decimal" Precision="12" Scale="2" StoreGeneratedPattern="Computed" />
+    <Property Name="PhotographeID" Type="int" />
   </EntityType>
   <Association Name="FK_Photo_SeanceID">
     <End Role="Seance" Type="Self.Seance" Multiplicity="1" />
@@ -81,6 +94,18 @@
       </Principal>
       <Dependent Role="Seance">
         <PropertyRef Name="AgentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Seance_Photographe_PhotographeID">
+    <End Role="Photographe" Type="Self.Photographe" Multiplicity="0..1" />
+    <End Role="Seance" Type="Self.Seance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photographe">
+        <PropertyRef Name="PhotographeID" />
+      </Principal>
+      <Dependent Role="Seance">
+        <PropertyRef Name="PhotographeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -140,6 +165,7 @@
   <EntityContainer Name="H15_PROJET_E09ModelStoreContainer">
     <EntitySet Name="Agent" EntityType="Self.Agent" Schema="Agents" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Photographe" EntityType="Self.Photographe" Schema="Photographes" store:Type="Tables" />
     <EntitySet Name="Photo" EntityType="Self.Photo" Schema="Seances" store:Type="Tables" />
     <EntitySet Name="RendezVous" EntityType="Self.RendezVous" Schema="Seances" store:Type="Tables" />
     <EntitySet Name="Seance" EntityType="Self.Seance" Schema="Seances" store:Type="Tables" />
@@ -149,6 +175,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Seance_Agent_AgentID" Association="Self.FK_Seance_Agent_AgentID">
       <End Role="Agent" EntitySet="Agent" />
+      <End Role="Seance" EntitySet="Seance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Seance_Photographe_PhotographeID" Association="Self.FK_Seance_Photographe_PhotographeID">
+      <End Role="Photographe" EntitySet="Photographe" />
       <End Role="Seance" EntitySet="Seance" />
     </AssociationSet>
     <AssociationSet Name="FK_Seance_Rendezvoux_RendezVousID" Association="Self.FK_Seance_Rendezvoux_RendezVousID">
