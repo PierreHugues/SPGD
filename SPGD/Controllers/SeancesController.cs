@@ -20,24 +20,11 @@ namespace SPGD.Controllers
         // GET: Seances
         public ActionResult Index()
         {
-            //var seances = db.Seances.Include(s => s.RendezVou);
-            //return View(seances.ToList());
-           // ViewBag.RDV = db.RendezVous;
-
-            //ViewBag.SeancesAvecRDV = unitOfWork.SeanceRepository.GetSeancesRDV();
-            //ViewBag.SeancesSansRDV = unitOfWork.SeanceRepository.GetSeancesSansRDV();
 
             var viewModel = new SeanceData();
 
-            //if()
-            //{
                 viewModel.seancesSansRDV = unitOfWork.SeanceRepository.GetSeancesSansRDV();
-            //}
-
-            //if()
-            //{
                 viewModel.seancesAvecRDV = unitOfWork.SeanceRepository.GetSeancesRDV();
-            //}
 
             return View(viewModel);
         }
@@ -49,7 +36,6 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Seance seance = db.Seances.Find(id);
             Seance seance = unitOfWork.SeanceRepository.GetSeanceByID(id);
 
             if (seance == null)
@@ -84,16 +70,13 @@ namespace SPGD.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Seances.Add(seance);
                 unitOfWork.SeanceRepository.InsertSeance(seance);
 
-                //db.SaveChanges();
                 unitOfWork.Save();
 
                 return RedirectToAction("Index");
             }
 
-            //ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire", seance.SeanceID);
             return View(seance);
         }
 
@@ -104,14 +87,13 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Seance seance = db.Seances.Find(id);
             Seance seance = unitOfWork.SeanceRepository.GetSeanceByID(id);
 
             if (seance == null)
             {
                 return HttpNotFound();
             }
-            //ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire", seance.SeanceID);
+
             return View(seance);
         }
 
@@ -124,15 +106,12 @@ namespace SPGD.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(seance).State = EntityState.Modified;
                 unitOfWork.SeanceRepository.UpdateSeance(seance);
 
-                //db.SaveChanges();
                 unitOfWork.Save();
                 
                 return RedirectToAction("Index");
             }
-            //ViewBag.SeanceID = new SelectList(db.RendezVous, "RendezVouID", "Commentaire", seance.SeanceID);
             return View(seance);
         }
 
@@ -143,7 +122,6 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Seance seance = db.Seances.Find(id);
             Seance seance = unitOfWork.SeanceRepository.GetSeanceByID(id);
 
             if (seance == null)
@@ -158,13 +136,9 @@ namespace SPGD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //Seance seance = db.Seances.Find(id);
-            //Seance seance = unitOfWork.SeanceRepository.GetSeanceByID(id);
 
-            //db.Seances.Remove(seance);
             unitOfWork.SeanceRepository.DeleteSeance(id);
 
-            //db.SaveChanges();
             unitOfWork.Save();
 
             return RedirectToAction("Index");
@@ -174,7 +148,6 @@ namespace SPGD.Controllers
         {
             if (disposing)
             {
-                //db.Dispose();
                 unitOfWork.Dispose();
             }
             base.Dispose(disposing);

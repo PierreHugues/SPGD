@@ -28,9 +28,6 @@ namespace SPGD.Controllers
             {
                 ViewBag.SelectedAgentNom = unitOfWork.AgentRepository.GetAgentByID(id).Prenom;
                 ViewBag.SelectedAgentNom = unitOfWork.AgentRepository.GetAgentByID(id).Nom;
-
-                //Obtenir les seances de l'agent selectionné
-                //viewModel.Seances = unitOfWork.AgentRepository.GetAgents();
             }
 
             return View(viewModel);
@@ -43,7 +40,6 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Agent agent = db.Agents.Find(id);
             Agent agent = unitOfWork.AgentRepository.GetAgentByID(id);
 
             if (agent == null)
@@ -68,10 +64,7 @@ namespace SPGD.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Agents.Add(agent);
                 unitOfWork.AgentRepository.InsertAgent(agent);
-
-                //db.SaveChanges();
                 unitOfWork.Save();
 
                 return RedirectToAction("Index");
@@ -87,7 +80,6 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Agent agent = db.Agents.Find(id);
             Agent agent = unitOfWork.AgentRepository.GetAgentByID(id);
 
             if (agent == null)
@@ -106,9 +98,7 @@ namespace SPGD.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(agent).State = EntityState.Modified;
                 unitOfWork.AgentRepository.UpdateAgent(agent);
-                //db.SaveChanges();
                 unitOfWork.Save();
 
                 return RedirectToAction("Index");
@@ -123,7 +113,6 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Agent agent = db.Agents.Find(id);
             Agent agent = unitOfWork.AgentRepository.GetAgentByID(id);
 
             if (agent == null)
@@ -138,12 +127,7 @@ namespace SPGD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //Agent agent = db.Agents.Find(id);
-
-            //db.Agents.Remove(agent);
             unitOfWork.AgentRepository.DeleteAgent(id);
-
-            //db.SaveChanges();
             unitOfWork.Save();
 
             return RedirectToAction("Index");
@@ -153,7 +137,6 @@ namespace SPGD.Controllers
         {
             if (disposing)
             {
-                //db.Dispose();
                 unitOfWork.Dispose();
             }
             base.Dispose(disposing);

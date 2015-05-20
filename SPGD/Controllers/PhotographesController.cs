@@ -20,7 +20,6 @@ namespace SPGD.Controllers
         // GET: Photographes
         public ActionResult Index(int? id)
         {
-            //return View(db.Photographes.ToList());
             var viewModel = new PhotographeData();
 
             viewModel.Photographes = unitOfWork.PhotographeRepository.GetPhotographes();
@@ -45,7 +44,6 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Photographe photographe = db.Photographes.Find(id);
             Photographe photographe = unitOfWork.PhotographeRepository.GetPhotographeByID(id);
 
             if (photographe == null)
@@ -70,10 +68,8 @@ namespace SPGD.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Photographes.Add(photographe);
                 unitOfWork.PhotographeRepository.InsertPhotographe(photographe);
 
-                //db.SaveChanges();
                 unitOfWork.Save();
                 
                 return RedirectToAction("Index");
@@ -89,7 +85,6 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Photographe photographe = db.Photographes.Find(id);
             Photographe photographe = unitOfWork.PhotographeRepository.GetPhotographeByID(id);
 
             if (photographe == null)
@@ -108,10 +103,6 @@ namespace SPGD.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(photographe).State = EntityState.Modified;
-
-
-                //db.SaveChanges();
                 unitOfWork.Save();
 
                 return RedirectToAction("Index");
@@ -126,7 +117,6 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Photographe photographe = db.Photographes.Find(id);
             Photographe photographe = unitOfWork.PhotographeRepository.GetPhotographeByID(id);
 
             if (photographe == null)
@@ -141,11 +131,7 @@ namespace SPGD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //Photographe photographe = db.Photographes.Find(id);
-            //db.Photographes.Remove(photographe);
             unitOfWork.PhotographeRepository.DeletePhotographe(id);
-
-            //db.SaveChanges();
             unitOfWork.Save();
             
             return RedirectToAction("Index");
@@ -155,7 +141,6 @@ namespace SPGD.Controllers
         {
             if (disposing)
             {
-                //db.Dispose();
                 unitOfWork.Dispose();
             }
             base.Dispose(disposing);

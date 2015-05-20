@@ -62,26 +62,12 @@ namespace SPGD.Controllers
             ModelState.Remove("DureeRendezVousReel");
             if (ModelState.IsValid)
             {
-                
-                //if (rendezVou.Seance.ToString() != "Demandée")
-                //    return RedirectToAction("Index");
-                //db.RendezVous.Add(rendezVou);
-
-               // Seance seance = unitOfWork.SeanceRepository.GetSeanceByID(rendezVou.RendezVouID);
-                //rendezVou.Seance = seance;
-
-                //rendezVou.DureeRendezVousReel = 0;
-                //rendezVou.NbPhotoReel = 0;
                 unitOfWork.SeanceRepository.GetSeanceByID(rendezVou.RendezVouID).PhotographeID = PhotographeID;
                 unitOfWork.RendezVousRepository.InsertRendezVous(rendezVou);
                 unitOfWork.Save();
                 return RedirectToAction("Index", "Seances");
             }
 
-            
-            //ViewBag.SeanceID = rendezVou.RendezVouID; 
-          //  ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
-     //       Create(rendezVou.RendezVouID);
             return Create(rendezVou.RendezVouID); ;
         }
 
@@ -118,7 +104,6 @@ namespace SPGD.Controllers
                 unitOfWork.Save();
                 return RedirectToAction("Index", "Seances");
             }
-            //ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
             return View(rendezVou);
         }
 
@@ -134,7 +119,6 @@ namespace SPGD.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
             return View(rendezVou);
         }
 
@@ -148,16 +132,12 @@ namespace SPGD.Controllers
             ModelState.Remove("DateHeureRendezVous");
             if (ModelState.IsValid)
             {
-                //db.Entry(rendezVou).State = EntityState.Modified;
-                //db.SaveChanges();
-                //RendezVou OldRendezVou = unitOfWork.RendezVousRepository.GetRendezVousByID(rendezVou.RendezVouID);
                 rendezVou.Completee = true;
                 
                 unitOfWork.RendezVousRepository.UpdateRendezVou(rendezVou);
                 unitOfWork.Save();
                 return RedirectToAction("Index", "Seances");
             }
-            //ViewBag.RendezVouID = new SelectList(db.Seances, "SeanceID", "StatusSeance", rendezVou.RendezVouID);
             return View(rendezVou);
         }
 
@@ -182,8 +162,6 @@ namespace SPGD.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             RendezVou rendezVou = unitOfWork.RendezVousRepository.GetByID(id);
-            //db.RendezVous.Remove(rendezVou);
-            //db.SaveChanges();
             unitOfWork.RendezVousRepository.DeleteRendezVou(id);
             return RedirectToAction("Index", "Seances");
         }

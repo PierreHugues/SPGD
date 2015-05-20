@@ -35,7 +35,6 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Photo photo = db.Photos.Find(id);
             Photo photo = unitOfWork.PhotoRepository.GetPhotoByID(id);
 
             if (photo == null)
@@ -48,7 +47,6 @@ namespace SPGD.Controllers
         // GET: Photos/Create
         public ActionResult Create(int? id)
         {
-            //ViewBag.SeanceID = new SelectList(db.Seances, "SeanceID", "StatusSeance");
             ViewBag.SeanceID = id;
             return View();
         }
@@ -63,22 +61,8 @@ namespace SPGD.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var repertoire = Directory.CreateDirectory(Request.PhysicalApplicationPath + "/images/" + photo.SeanceID.ToString());
-
-                //PhotoExtensionValidation asd = new PhotoExtensionValidation
-                string cheminDossierSeance = Request.PhysicalApplicationPath + "/images/" + photo.SeanceID.ToString();
-
-
-
-
-
-
-                //****************QUESTION: Est-ce qu'on sauvegarde le path avec le "~"??????************************
-                //string cheminDossierSeance = "~" + "/images/" + photo.SeanceID.ToString();
-                
-                
+                string cheminDossierSeance = Request.PhysicalApplicationPath + "/images/" + photo.SeanceID.ToString();              
                 DirectoryInfo directoryEnCours = new DirectoryInfo(cheminDossierSeance);
-
                 int compteur;
 
                 if (Directory.Exists(cheminDossierSeance))  //Si le dossier existe déjà
@@ -98,7 +82,6 @@ namespace SPGD.Controllers
 
                     String extention = DonneePhoto.FileName.Substring(DonneePhoto.FileName.LastIndexOf('.'));
 
-                    //****************************Attribut perso suffisant? *****************************************
                     if (extention == ".png" || extention == ".jpg" || extention == ".jpeg")
                     {
 
@@ -114,18 +97,11 @@ namespace SPGD.Controllers
                     }
                 }
 
-
-                //db.Photos.Add(photo);
-                //unitOfWork.PhotoRepository.InsertPhoto(photo);
-
-                //db.SaveChanges();
                 unitOfWork.SeanceRepository.GetSeanceByID(photo.SeanceID).DateRemisePhoto = DateTime.Now;
                 unitOfWork.Save();
 
                 return RedirectToAction("Index");
             }
-
-            //ViewBag.SeanceID = new SelectList(db.Seances, "SeanceID", "StatusSeance", photo.SeanceID);
             return View();
         }
 
@@ -156,10 +132,7 @@ namespace SPGD.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(photo).State = EntityState.Modified;
                 unitOfWork.PhotoRepository.UpdatePhoto(photo);
-
-                //db.SaveChanges();
                 unitOfWork.Save();
 
                 return RedirectToAction("Index");
@@ -175,7 +148,6 @@ namespace SPGD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Photo photo = db.Photos.Find(id);
             Photo photo = unitOfWork.PhotoRepository.GetPhotoByID(id);
 
             if (photo == null)
@@ -190,11 +162,7 @@ namespace SPGD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //Photo photo = db.Photos.Find(id);
-            //db.Photos.Remove(photo);
             unitOfWork.PhotoRepository.DeletePhoto(id);
-
-            //db.SaveChanges();
             unitOfWork.Save();
 
             return RedirectToAction("Index");
@@ -204,7 +172,6 @@ namespace SPGD.Controllers
         {
             if (disposing)
             {
-                //db.Dispose();
                 unitOfWork.Dispose();
             }
             base.Dispose(disposing);

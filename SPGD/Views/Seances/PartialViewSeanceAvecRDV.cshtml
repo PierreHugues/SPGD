@@ -72,9 +72,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.StatusSeance)
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.TypeForfaitDeBaseVoulu)
-                </td>*@
             @{var typeForfaitValeurNumerique = item.TypeForfaitDeBaseVoulu;}
             @if (typeForfaitValeurNumerique == 1)
             {
@@ -88,41 +85,12 @@
             {
                 <td>Or</td>
             }
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.FraisDeBaseReel)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FraisDeDeplacement)
-                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.RendezVou.DateHeureRendezVous)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Commentaire)
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.FraisAdditionnel)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateDebutDeSeance)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateRemisePhoto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateDePaymentRecu)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FraisSeanceTotal)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RendezVou.Commentaire)
-                </td>*@
-
-            @*@if (item.StatusSeance == "Demandée")
-                {
-                    @Html.ActionLink("Créer un RendezVous", "Create", "RendezVous", new { id = item.SeanceID }, null)
-                }*@
             @if (item.StatusSeance == "Confirmée" || item.StatusSeance == "Reportée")
             {
                 <td>
@@ -158,13 +126,6 @@
 
                 </td>
             }
-            @*
-                  <td>
-                      @Html.ActionLink("Edit", "Edit", new { id=item.SeanceID }) |
-                      @Html.ActionLink("Details", "Details", new { id=item.SeanceID }) |
-                      @Html.ActionLink("Delete", "Delete", new { id=item.SeanceID })
-                </td>
-            *@
         </tr>
     }
 
