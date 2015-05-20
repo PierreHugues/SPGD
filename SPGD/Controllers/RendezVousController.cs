@@ -44,6 +44,8 @@ namespace SPGD.Controllers
             DateTime dateCourante = DateTime.Now;
             string format = "yyyy-MM-dd hh:mm:ss";
             ViewBag.Datecourante = dateCourante.AddDays(1).ToString(format);
+            var photographequery = unitOfWork.PhotographeRepository.GetPhotographes();
+            ViewBag.PhotographeID = new SelectList(photographequery, "PhotographeID", "Nom");
             //ViewBag.SeanceID = new SelectList(db.Seances, "SeanceID", "SeanceID");
             ViewBag.SeanceID = id; 
             return View();
@@ -54,12 +56,13 @@ namespace SPGD.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DateHeureRendezVous,Commentaire, RendezVouID")] RendezVou rendezVou)    // IL FAUT RÉSOUDRE ICI LE PROBLÈMEDU FAIT QUE rendezVous RECOIT TOUJOURS UN ID DE 0
+        public ActionResult Create([Bind(Include = "DateHeureRendezVous,Commentaire, RendezVouID")] RendezVou rendezVou, int PhotographeID)    // IL FAUT RÉSOUDRE ICI LE PROBLÈMEDU FAIT QUE rendezVous RECOIT TOUJOURS UN ID DE 0
         {
             ModelState.Remove("NbPhotoReel");
             ModelState.Remove("DureeRendezVousReel");
             if (ModelState.IsValid)
             {
+                
                 //if (rendezVou.Seance.ToString() != "Demandée")
                 //    return RedirectToAction("Index");
                 //db.RendezVous.Add(rendezVou);
@@ -69,6 +72,7 @@ namespace SPGD.Controllers
 
                 //rendezVou.DureeRendezVousReel = 0;
                 //rendezVou.NbPhotoReel = 0;
+                unitOfWork.SeanceRepository.GetSeanceByID(rendezVou.RendezVouID).PhotographeID = PhotographeID;
                 unitOfWork.RendezVousRepository.InsertRendezVous(rendezVou);
                 unitOfWork.Save();
                 return RedirectToAction("Index", "Seances");
