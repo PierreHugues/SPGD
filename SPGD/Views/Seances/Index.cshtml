@@ -5,9 +5,7 @@
     ViewBag.Title = "Index";
 }
 <br />
-<div class="btn-link">
-@Html.ActionLink("S'inscrire en tant qu'agent", "Create", "Agents")
-</div>
+@Html.ActionLink("S'inscrire en tant qu'agent", "Create", "Agents", new { @class="btn-lg"})
 <h2>Catalogue des séances sans RDV</h2>
 <p>
     @Html.ActionLink("Demander une séance", "Create")
