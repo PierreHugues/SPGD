@@ -2,13 +2,13 @@
 @using PagedList.Mvc;
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Liste des agents";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("S'inscrire en tant que nouvel agent", "Create")
 </p>
 <table class="table">
     <tr>
@@ -16,13 +16,13 @@
             Nom
         </th>
         <th>
-            Prenom
+            Prénom
         </th>
         <th>
-            Telephone 1
+            Téléphone 1
         </th>
         <th>
-            Telephone 2
+            Téléphone 2
         </th>
         <th>
             Courriel 1
@@ -60,9 +60,9 @@
             @Html.DisplayFor(modelItem => item.AdresseBureau)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AgentID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AgentID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AgentID })
+            @*@Html.ActionLink("Modifier", "Edit", new { id=item.AgentID }) |*@
+            @Html.ActionLink("Détails", "Details", new { id=item.AgentID })
+            @*@Html.ActionLink("Supprimer", "Delete", new { id=item.AgentID })*@
         </td>
     </tr>
 }

@@ -230,3 +230,7 @@ C:\Users\1195096\Desktop\SPGD\SPGD\bin\PagedList.dll
 C:\Users\1195096\Desktop\SPGD\SPGD\bin\PagedList.Mvc.dll
 C:\Users\1195096\Desktop\SPGD\SPGD\bin\PagedList.xml
 C:\Users\1195096\Desktop\SPGD\SPGD\bin\PagedList.Mvc.xml
+C:\Espace Labo\SPGD\SPGD\bin\PagedList.dll
+C:\Espace Labo\SPGD\SPGD\bin\PagedList.Mvc.dll
+C:\Espace Labo\SPGD\SPGD\bin\PagedList.xml
+C:\Espace Labo\SPGD\SPGD\bin\PagedList.Mvc.xml

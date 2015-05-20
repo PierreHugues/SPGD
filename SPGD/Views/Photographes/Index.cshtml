@@ -57,7 +57,6 @@
                 </td>
                 <td>
                     @Html.ActionLink("Select", "Index", new { id = item.PhotographeID }) |
-                    @Html.ActionLink("Edit", "Edit", new { id = item.PhotographeID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.PhotographeID }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.PhotographeID })
                 </td>
@@ -69,7 +68,7 @@
 
 @if (Model.SeanceData != null)
 {
-    <h2>TEST: Les séances du photographe @ViewBag.SelectedPhotographePrenom @ViewBag.SelectedPhotographeNom</h2>
+    <h2>Les séances du photographe @ViewBag.SelectedPhotographePrenom @ViewBag.SelectedPhotographeNom</h2>
     @Html.Partial("PartialViewSeanceAvecRDV", Model.SeanceData)
 }
 
