@@ -34,7 +34,6 @@ namespace SPGD.DAL
 
         public IEnumerable<Seance> GetSeancesSelonPhotographe(int id)
         {
-
             //Seance seances = Get(filter: ph => ph.PhotographeID == id, includeProperties: "Seances").ToList().Single();
             Photographe photographe = GetByID(id);
             return photographe.Seances;

@@ -32,5 +32,21 @@ namespace SPGD.DAL
         {
             Delete(id);
         }
+
+
+        public IEnumerable<Seance> GetSeancesDerniereAnnéeSelonAgent(int id)
+        {
+            Agent agent = GetByID(id);
+            IEnumerable<Seance> seances = agent.Seances;
+
+
+            //seances = Get(filter: a => a.AgentID == id, includeProperties: "Seances").ToList().Single();
+            //seances = Get().Where(a => a.AgentID == id && s.DateDebutDeSeance.Year == DateTime.Now.Year);
+
+
+            seances.Where(s => s.DateDebutDeSeance.Year == DateTime.Now.Year);
+            seances = seances.OrderByDescending(s => s.DateDebutDeSeance);
+            return seances;
+        }
     }
 }

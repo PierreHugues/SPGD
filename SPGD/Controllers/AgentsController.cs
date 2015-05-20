@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SPGD.Models;
 using SPGD.DAL;
+using SPGD.ViewModel;
 
 namespace SPGD.Controllers
 {
@@ -17,10 +18,22 @@ namespace SPGD.Controllers
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: Agents
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            var agents = unitOfWork.AgentRepository.GetAgents();
-            return View(agents);
+            var viewModel = new AgentData();
+
+            viewModel.Agents = unitOfWork.AgentRepository.GetAgents();
+
+            if(id != null)
+            {
+                ViewBag.SelectedAgentNom = unitOfWork.AgentRepository.GetAgentByID(id).Prenom;
+                ViewBag.SelectedAgentNom = unitOfWork.AgentRepository.GetAgentByID(id).Nom;
+
+                //Obtenir les seances de l'agent selectionné
+                //viewModel.Seances = unitOfWork.AgentRepository.GetAgents();
+            }
+
+            return View(viewModel);
         }
 
         // GET: Agents/Details/5
