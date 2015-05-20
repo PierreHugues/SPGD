@@ -13,13 +13,13 @@ namespace SPGD.Controllers
 {
     public class RendezVousController : Controller
     {
-        private H15_PROJET_E09Entities1 db = new H15_PROJET_E09Entities1();
+        //private H15_PROJET_E09Entities1 db = new H15_PROJET_E09Entities1();
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: RendezVous
         public ActionResult Index()
         {
-            var rendezVous = db.RendezVous.Include(r => r.Seance);
+            //var rendezVous = db.RendezVous.Include(r => r.Seance);
             return View(unitOfWork.RendezVousRepository.GetRendezVous());
         }
 
@@ -170,7 +170,8 @@ namespace SPGD.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
+                unitOfWork.Dispose();
             }
             base.Dispose(disposing);
         }

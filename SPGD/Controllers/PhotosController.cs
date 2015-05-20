@@ -59,7 +59,7 @@ namespace SPGD.Controllers
         //public ActionResult Create([Bind(Include = "PhotoID,SeanceID,PhotoPathName")] Photo photo)
         public ActionResult Create([Bind(Include = "SeanceID")] Photo photo, IEnumerable<HttpPostedFileBase> imageFile)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && imageFile.First() != null)
             {
                 string cheminDossierSeance = Request.PhysicalApplicationPath + "/images/" + photo.SeanceID.ToString();              
                 DirectoryInfo directoryEnCours = new DirectoryInfo(cheminDossierSeance);

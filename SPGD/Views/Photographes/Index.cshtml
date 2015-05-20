@@ -5,30 +5,36 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Liste des photographes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Ajouter un photographe", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Photographes.First().Nom)
+            @*@Html.DisplayNameFor(model => model.Photographes.First().Nom)*@
+            Nom
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Photographes.First().Prenom)
+            @*@Html.DisplayNameFor(model => model.Photographes.First().Prenom)*@
+            Prénom
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Photographes.First().Telephone1)
+            @*@Html.DisplayNameFor(model => model.Photographes.First().Telephone1)*@
+            Téléphone 1
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Photographes.First().Telephone2)
+            @*@Html.DisplayNameFor(model => model.Photographes.First().Telephone2)*@
+            Téléphone 2
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Photographes.First().Courriel1)
+            @*@Html.DisplayNameFor(model => model.Photographes.First().Courriel1)*@
+            Courriel 1
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Photographes.First().Courriel2)
+            @*@Html.DisplayNameFor(model => model.Photographes.First().Courriel2)*@
+            Courriel 2
         </th>
         <th></th>
     </tr>
@@ -57,8 +63,8 @@
                 </td>
                 <td>
                     @Html.ActionLink("Select", "Index", new { id = item.PhotographeID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.PhotographeID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.PhotographeID })
+                    @Html.ActionLink("Détails", "Details", new { id = item.PhotographeID }) @*|
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.PhotographeID })*@
                 </td>
             </tr>
         }
