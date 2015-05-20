@@ -119,6 +119,7 @@ namespace SPGD.Controllers
                 //unitOfWork.PhotoRepository.InsertPhoto(photo);
 
                 //db.SaveChanges();
+                unitOfWork.SeanceRepository.GetSeanceByID(photo.SeanceID).DateRemisePhoto = DateTime.Now;
                 unitOfWork.Save();
 
                 return RedirectToAction("Index");
